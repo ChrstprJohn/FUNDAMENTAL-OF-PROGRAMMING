@@ -1,0 +1,21 @@
+# .NET and Visual Studio
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Frontend dependencies and logs
+**/node_modules/
+*.log
+
+# Local secrets and tooling
+.env
+.env.*
+!.env.example
+**/.taste-skill/
+**/TestResults/
+.DS_Store
+Thumbs.db

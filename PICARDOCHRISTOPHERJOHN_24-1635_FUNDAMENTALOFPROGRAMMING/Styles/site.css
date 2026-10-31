@@ -1,0 +1,46 @@
+@import "tailwindcss" source(none);
+@source "../Views";
+
+@theme {
+    --font-sans: "Segoe UI", Arial, sans-serif;
+    --color-course-green: #087c50;
+    --color-course-dark: #05643f;
+    --color-course-light: #e4f3eb;
+    --color-course-sidebar: #f2f3f2;
+}
+
+@layer base {
+    :focus-visible {
+        outline: 3px solid var(--color-course-green);
+        outline-offset: 4px;
+    }
+}
+
+@layer components {
+    .topic-link {
+        @apply flex min-h-11 items-center px-3 py-2 text-sm hover:bg-stone-200;
+    }
+
+    .topic-link[aria-current="page"] {
+        @apply bg-stone-200 font-semibold;
+    }
+
+    .skip-link {
+        @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:px-4 focus:py-3;
+    }
+}
+
+/* Desktop navigation stays visible; mobile uses a native disclosure without JavaScript. */
+@media (min-width: 64rem) {
+    .topic-menu > summary {
+        display: none;
+    }
+
+    .topic-menu::details-content {
+        content-visibility: visible;
+    }
+
+    .topic-menu:not([open]) > nav {
+        display: flex;
+    }
+}
