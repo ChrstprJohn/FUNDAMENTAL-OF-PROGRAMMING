@@ -14,6 +14,15 @@
         outline: 3px solid var(--color-course-green);
         outline-offset: 4px;
     }
+
+    ::selection {
+        background: var(--color-course-light);
+        color: var(--color-course-dark);
+    }
+
+    input {
+        caret-color: var(--color-course-green);
+    }
 }
 
 @layer components {
@@ -25,22 +34,70 @@
         @apply bg-stone-200 font-semibold;
     }
 
+    .example {
+        @apply mt-10 scroll-mt-6 bg-stone-50 p-5 sm:p-8;
+    }
+
+    .example-form {
+        @apply mt-6 grid max-w-xl gap-5;
+    }
+
+    .form-label {
+        @apply block font-semibold;
+    }
+
+    .form-input {
+        @apply mt-2 min-h-11 w-full border border-stone-500 bg-white px-3 py-2;
+    }
+
+    .field-error {
+        @apply mt-1 block text-sm text-red-800;
+    }
+
+    .input-validation-error {
+        @apply border-red-800;
+    }
+
+    .error-summary {
+        @apply mt-6 bg-red-50 p-5 text-red-900;
+    }
+
+    .action-button {
+        @apply min-h-11 justify-self-start bg-course-green px-5 py-2 font-semibold text-white hover:bg-course-dark;
+    }
+
+    .example-output {
+        @apply mt-6 whitespace-pre-wrap break-words bg-course-light p-5 text-base leading-relaxed;
+    }
+
+    .code-example {
+        @apply mt-3 max-w-full whitespace-pre-wrap break-words bg-stone-900 p-5 text-sm leading-relaxed text-white;
+        overflow-wrap: anywhere;
+    }
+
     .skip-link {
         @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:px-4 focus:py-3;
     }
 }
 
+details:not([open]) > .code-example {
+    display: none;
+}
+
 /* Desktop navigation stays visible; mobile uses a native disclosure without JavaScript. */
 @media (min-width: 64rem) {
-    .topic-menu > summary {
+    .topic-menu > summary,
+    .example-menu > summary {
         display: none;
     }
 
-    .topic-menu::details-content {
+    .topic-menu::details-content,
+    .example-menu::details-content {
         content-visibility: visible;
     }
 
-    .topic-menu:not([open]) > nav {
+    .topic-menu:not([open]) > nav,
+    .example-menu:not([open]) > nav {
         display: flex;
     }
 }

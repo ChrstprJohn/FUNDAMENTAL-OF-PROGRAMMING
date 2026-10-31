@@ -1,6 +1,6 @@
 # Build your Basic Calculator
 
-You will create one model, update one controller, and update the existing Basic Input-Output view. These are instructions and snippets only; the calculator is not installed in the application yet.
+This is the original standalone learning exercise the student followed. The calculator is now implemented and grouped with four other forms in `BasicIOPageModel`. Keep this guide as a learning reference; replacing the current integrated controller or view with these original snippets would remove the newer forms.
 
 All paths below start inside the inner project folder:
 `PICARDOCHRISTOPHERJOHN_24-1635_FUNDAMENTALOFPROGRAMMING/` (the folder containing `Program.cs`).

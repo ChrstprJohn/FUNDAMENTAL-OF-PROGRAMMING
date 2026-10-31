@@ -16,13 +16,13 @@
     <div class="bg-stone-900 px-5 py-3 text-sm text-white lg:px-8">C# learning notebook</div>
     <div class="lg:grid lg:grid-cols-[248px_minmax(0,1fr)]">
         <aside class="bg-course-sidebar px-5 py-5 lg:min-h-[calc(100vh-116px)] lg:px-6 lg:py-9">
-            <details class="topic-menu">
+            <details class="topic-menu lg:sticky lg:top-6">
                 <summary class="cursor-pointer py-2 font-semibold">Course contents</summary>
                 <nav aria-label="Course contents" class="mt-4 flex flex-col gap-1">
                     <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "BasicIO" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Home" asp-action="BasicIO">Basic Input-Output</a>
-                    <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "NestedIfElse" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Home" asp-action="NestedIfElse">Nested If...Else</a>
-                    <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "Loops" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Home" asp-action="Loops">Loops</a>
-                    <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "Arrays" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Home" asp-action="Arrays">Arrays</a>
+                    <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "NestedIfElse" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Index">Nested If...Else</a>
+                    <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "Loops" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Index">Loops</a>
+                    <a class="topic-link" aria-current="@(ViewData["Topic"] as string == "Arrays" ? "page" : null)" asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Index">Arrays</a>
                 </nav>
             </details>
         </aside>
@@ -33,6 +33,7 @@
             </div>
         </main>
     </div>
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

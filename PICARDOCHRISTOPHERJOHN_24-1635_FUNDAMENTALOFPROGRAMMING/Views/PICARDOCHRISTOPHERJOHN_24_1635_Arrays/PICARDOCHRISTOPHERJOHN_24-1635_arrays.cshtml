@@ -1,0 +1,149 @@
+@model PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel
+
+@{
+    ViewData["Title"] = "Arrays";
+    ViewData["Topic"] = "Arrays";
+}
+
+<h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Arrays</h1>
+<p class="mt-4 max-w-2xl text-base leading-relaxed text-stone-700 sm:text-lg">Two one-dimensional array examples and three two-dimensional array examples. Values must be whole numbers from -1000 to 1000.</p>
+<details class="example-menu mt-5">
+    <summary class="min-h-11 cursor-pointer py-2 font-semibold">Examples on this page</summary>
+    <nav aria-label="Examples on this page" class="mt-2 flex flex-wrap gap-x-5 gap-y-3">
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#sum">Sum of Five Numbers</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#largest">Largest Value in an Array</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#display">Display a 2×2 Matrix</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#row-totals">Sum Each Matrix Row</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#transpose">Transpose a Matrix</a>
+    </nav>
+</details>
+<partial name="PICARDOCHRISTOPHERJOHN_24-1635_validation" />
+
+<section id="sum" aria-labelledby="sum-title" class="example">
+    <h2 id="sum-title" class="text-2xl font-semibold tracking-tight">Sum of Five Numbers</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">One-dimensional array: enter five whole numbers separated by commas, for example 1, 2, 3, 4, 5.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Sum" asp-fragment="sum" method="post" class="example-form">
+            <div>
+                <label asp-for="Sum.Values" class="form-label">Five whole numbers</label>
+                <input asp-for="Sum.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Sum_Values-error" />
+                <span asp-validation-for="Sum.Values" id="Sum_Values-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Calculate sum</button>
+    </form>
+    @if (Model.Sum.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Sum.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int total = 0;
+foreach (int number in numbers)
+    total += number;
+Result = $"Sum: {total}";</code></pre>
+    </details>
+</section>
+
+<section id="largest" aria-labelledby="largest-title" class="example">
+    <h2 id="largest-title" class="text-2xl font-semibold tracking-tight">Largest Value in an Array</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">One-dimensional array: compare five values. Negative numbers and duplicates are allowed.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Largest" asp-fragment="largest" method="post" class="example-form">
+            <div>
+                <label asp-for="Largest.Values" class="form-label">Five whole numbers</label>
+                <input asp-for="Largest.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Largest_Values-error" />
+                <span asp-validation-for="Largest.Values" id="Largest_Values-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Find largest</button>
+    </form>
+    @if (Model.Largest.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Largest.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int largest = numbers[0];
+foreach (int number in numbers)
+{
+    if (number &gt; largest)
+        largest = number;
+}
+Result = $"Largest value: {largest}";</code></pre>
+    </details>
+</section>
+
+<section id="display" aria-labelledby="display-title" class="example">
+    <h2 id="display-title" class="text-2xl font-semibold tracking-tight">Display a 2×2 Matrix</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Two-dimensional array: enter four numbers in row order. For example, 1, 2, 3, 4 becomes two rows: 1 2 and 3 4.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Display" asp-fragment="display" method="post" class="example-form">
+            <div>
+                <label asp-for="Display.Values" class="form-label">Four whole numbers</label>
+                <input asp-for="Display.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Display_Values-error" />
+                <span asp-validation-for="Display.Values" id="Display_Values-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Display matrix</button>
+    </form>
+    @if (Model.Display.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Display.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int[,] matrix = new int[,] { { numbers[0], numbers[1] }, { numbers[2], numbers[3] } };
+var rows = new List&lt;string&gt;();
+for (int row = 0; row &lt; 2; row++)
+    rows.Add($"{matrix[row, 0]}  {matrix[row, 1]}");
+Result = string.Join("\n", rows);</code></pre>
+    </details>
+</section>
+
+<section id="row-totals" aria-labelledby="row-totals-title" class="example">
+    <h2 id="row-totals-title" class="text-2xl font-semibold tracking-tight">Sum Each Matrix Row</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Two-dimensional array: add the two values in each row of a 2×2 matrix.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="RowTotals" asp-fragment="row-totals" method="post" class="example-form">
+            <div>
+                <label asp-for="RowTotals.Values" class="form-label">Four whole numbers</label>
+                <input asp-for="RowTotals.Values" type="text" maxlength="100" required class="form-input" aria-describedby="RowTotals_Values-error" />
+                <span asp-validation-for="RowTotals.Values" id="RowTotals_Values-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Calculate row sums</button>
+    </form>
+    @if (Model.RowTotals.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.RowTotals.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>for (int row = 0; row &lt; 2; row++)
+{
+    int total = 0;
+    for (int column = 0; column &lt; 2; column++)
+        total += matrix[row, column];
+    rows.Add($"Row {row + 1} sum: {total}");
+}</code></pre>
+    </details>
+</section>
+
+<section id="transpose" aria-labelledby="transpose-title" class="example">
+    <h2 id="transpose-title" class="text-2xl font-semibold tracking-tight">Transpose a Matrix</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Two-dimensional array: swap the rows and columns of a 2×2 matrix.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Transpose" asp-fragment="transpose" method="post" class="example-form">
+            <div>
+                <label asp-for="Transpose.Values" class="form-label">Four whole numbers</label>
+                <input asp-for="Transpose.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Transpose_Values-error" />
+                <span asp-validation-for="Transpose.Values" id="Transpose_Values-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Transpose matrix</button>
+    </form>
+    @if (Model.Transpose.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Transpose.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int[,] transposed = new int[2, 2];
+for (int row = 0; row &lt; 2; row++)
+{
+    for (int column = 0; column &lt; 2; column++)
+        transposed[column, row] = matrix[row, column];
+}</code></pre>
+    </details>
+</section>

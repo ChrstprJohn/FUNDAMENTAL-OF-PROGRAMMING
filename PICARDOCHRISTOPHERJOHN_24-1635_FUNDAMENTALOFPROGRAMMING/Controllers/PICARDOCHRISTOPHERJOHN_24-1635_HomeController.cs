@@ -14,25 +14,70 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_HomeController : Controller
     [HttpGet("/basic-io")]
     public IActionResult BasicIO()
     {
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio");
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio", new PICARDOCHRISTOPHERJOHN_24_1635_BasicIOPageModel());
     }
 
-    [HttpGet("/nested-if-else")]
-    public IActionResult NestedIfElse()
+    [HttpPost("/basic-io")]
+    [ValidateAntiForgeryToken]
+    public IActionResult BasicIO([Bind(Prefix = "Calculator")] PICARDOCHRISTOPHERJOHN_24_1635_CalculatorModel model)
     {
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse");
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                model.Calculate();
+            }
+            catch (DivideByZeroException)
+            {
+                ModelState.AddModelError("Calculator.SecondNumber", "Cannot divide by zero.");
+            }
+            catch (OverflowException)
+            {
+                ModelState.AddModelError(string.Empty, "The result is too large. Try smaller numbers.");
+            }
+        }
+
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio", new PICARDOCHRISTOPHERJOHN_24_1635_BasicIOPageModel { Calculator = model });
     }
 
-    [HttpGet("/loops")]
-    public IActionResult Loops()
+    [HttpPost("/basic-io/bmi")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Bmi([Bind(Prefix = "Bmi")] PICARDOCHRISTOPHERJOHN_24_1635_BmiModel model)
     {
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops");
+        if (ModelState.IsValid)
+            model.Calculate();
+
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio", new PICARDOCHRISTOPHERJOHN_24_1635_BasicIOPageModel { Bmi = model });
     }
 
-    [HttpGet("/arrays")]
-    public IActionResult Arrays()
+    [HttpPost("/basic-io/temperature")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Temperature([Bind(Prefix = "Temperature")] PICARDOCHRISTOPHERJOHN_24_1635_TemperatureModel model)
     {
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays");
+        if (ModelState.IsValid)
+            model.Calculate();
+
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio", new PICARDOCHRISTOPHERJOHN_24_1635_BasicIOPageModel { Temperature = model });
+    }
+
+    [HttpPost("/basic-io/greeting")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Greeting([Bind(Prefix = "Greeting")] PICARDOCHRISTOPHERJOHN_24_1635_GreetingModel model)
+    {
+        if (ModelState.IsValid)
+            model.Calculate();
+
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio", new PICARDOCHRISTOPHERJOHN_24_1635_BasicIOPageModel { Greeting = model });
+    }
+
+    [HttpPost("/basic-io/circle")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Circle([Bind(Prefix = "Circle")] PICARDOCHRISTOPHERJOHN_24_1635_CircleModel model)
+    {
+        if (ModelState.IsValid)
+            model.Calculate();
+
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_basicio", new PICARDOCHRISTOPHERJOHN_24_1635_BasicIOPageModel { Circle = model });
     }
 
     [Route("/error")]
@@ -43,7 +88,6 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_HomeController : Controller
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
         };
-
         return View("PICARDOCHRISTOPHERJOHN_24-1635_error", model);
     }
 }

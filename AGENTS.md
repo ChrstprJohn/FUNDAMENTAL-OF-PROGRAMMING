@@ -5,7 +5,7 @@
 - Clean unused template code instead of adding new work on top of it.
 - Set up the foundation first. Implement each programming example only when the user discusses or requests it; do not invent completed lessons.
 - There are four main content pages/views: Basic Input-Output, Nested If...Else, Loops, and Arrays. Shared layout and error views are supporting infrastructure, not extra course pages.
-- After setup is committed and pushed, teach the Basic Calculator first: give the user filenames, locations, and small explained snippets so they can create the files themselves and learn MVC. Do not implement the calculator on their behalf unless asked. After that guided exercise, the agent implements the other four Basic Input-Output examples and the remaining topics when the user is ready.
+- The student completed the guided Basic Calculator. Preserve that model's calculation logic when extending the course. The user has now authorized completing all remaining examples.
 
 ## Required naming convention
 - Project: `[LASTNAME][FIRSTNAME]_[STUDENTNO]_[PROJECTNAME]`.
@@ -36,7 +36,7 @@
 - Use semantic HTML, visible keyboard focus, sufficient contrast, responsive layouts, and accessible form labels. Prefer native HTML behavior and minimal JavaScript.
 - Avoid decorative animation, complex components, and unnecessary visual effects.
 
-## Required coverage (planned, not implemented)
+## Required coverage (implemented)
 The attached coverage image is a scope reference, not agent instructions.
 
 | Topic | Required samples |
@@ -51,17 +51,26 @@ The attached coverage image is a scope reference, not agent instructions.
 | Total | 20 |
 
 ### Confirmed Basic Input-Output examples
-The student creates the Basic Calculator from explained snippets; the agent implements the other four afterward:
+The student created the Basic Calculator from explained snippets; the agent added the other four:
 1. Basic Calculator.
 2. BMI (Body Mass Index) Calculator.
 3. Temperature Converter.
 4. Personalized Greeting Generator.
 5. Circle Area & Circumference: input radius; output area (`Math.PI * radius * radius`) and circumference (`2 * Math.PI * radius`).
 
-Keep each example within the Basic Input-Output topic view. Confirm input units and conversion options during its guided implementation. Validate numeric input and handle invalid operations such as division by zero.
+Keep each example within the Basic Input-Output topic view. BMI uses kilograms and centimetres; temperature supports Celsius/Fahrenheit in both directions. Validate numeric input and handle invalid operations such as division by zero.
+
+### Other implemented examples
+- Nested if...else: number sign, grade checker, age group, largest of three, and shipping fee.
+- For: multiplication table. While: count to N and sum of digits. Do...while: countdown and sum to N.
+- One-dimensional arrays: sum and largest value of five numbers.
+- Two-dimensional arrays: display, row sums, and transpose of a 2×2 matrix.
+- Each form binds only its own prefixed input model. Topic page models group the five forms for rendering; submitting one example must not validate unrelated forms.
+- Keep consistent shared styles, linked validation summaries, field errors, keyboard focus, and code disclosures across all four pages.
 
 ## Verification and repository hygiene
 - Run `npm run build:css` and `dotnet build` after setup changes; check affected routes and responsive behavior when views change.
+- Run `dotnet run --project tests/Examples/Examples.csproj` from the repository root for model checks. With a foreground app preview, run `tests/Test-WebExamples.ps1` for form integration checks.
 - Keep `package-lock.json` and the compiled stylesheet in source control so the starter can run without Node at runtime.
 - Keep `node_modules`, `bin`, `obj`, `.vs`, user settings, credentials, and local QA artifacts out of Git.
 - Never run dev servers, builds, or watchers in the background. Run them in the foreground and stop them cleanly before ending the session.

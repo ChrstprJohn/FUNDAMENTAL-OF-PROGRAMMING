@@ -1,0 +1,211 @@
+@model PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel
+
+@{
+    ViewData["Title"] = "Nested If...Else";
+    ViewData["Topic"] = "NestedIfElse";
+}
+
+<h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Nested If...Else</h1>
+<p class="mt-4 max-w-2xl text-base leading-relaxed text-stone-700 sm:text-lg">Five examples that make a decision inside another decision.</p>
+<details class="example-menu mt-5">
+    <summary class="min-h-11 cursor-pointer py-2 font-semibold">Examples on this page</summary>
+    <nav aria-label="Examples on this page" class="mt-2 flex flex-wrap gap-x-5 gap-y-3">
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#number">Positive, Negative, or Zero</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#grade">Grade Checker</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#age">Age Group</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#largest">Largest of Three Numbers</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#shipping">Shipping Fee</a>
+    </nav>
+</details>
+<partial name="PICARDOCHRISTOPHERJOHN_24-1635_validation" />
+
+<section id="number" aria-labelledby="number-title" class="example">
+    <h2 id="number-title" class="text-2xl font-semibold tracking-tight">Positive, Negative, or Zero</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Use a nested condition to distinguish a positive value from zero.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Number" asp-fragment="number" method="post" class="example-form">
+            <div>
+                <label asp-for="Number.Value" class="form-label">Number</label>
+                <input asp-for="Number.Value" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Number_Value-error" />
+                <span asp-validation-for="Number.Value" id="Number_Value-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Check number</button>
+    </form>
+    @if (Model.Number.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Number.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int number = Value.GetValueOrDefault();
+if (number &gt;= 0)
+{
+    if (number == 0)
+        Result = "The number is zero.";
+    else
+        Result = "The number is positive.";
+}
+else
+{
+    Result = "The number is negative.";
+}</code></pre>
+    </details>
+</section>
+
+<section id="grade" aria-labelledby="grade-title" class="example">
+    <h2 id="grade-title" class="text-2xl font-semibold tracking-tight">Grade Checker</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Practice rules: 90–100 distinction, 75–89 passed, 60–74 needs improvement, below 60 failed.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Grade" asp-fragment="grade" method="post" class="example-form">
+            <div>
+                <label asp-for="Grade.Score" class="form-label">Grade (0–100)</label>
+                <input asp-for="Grade.Score" type="number" step="1" min="0" max="100" required class="form-input" aria-describedby="Grade_Score-error" />
+                <span asp-validation-for="Grade.Score" id="Grade_Score-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Check grade</button>
+    </form>
+    @if (Model.Grade.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Grade.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int grade = Score.GetValueOrDefault();
+if (grade &gt;= 75)
+{
+    if (grade &gt;= 90)
+        Result = "Passed with distinction.";
+    else
+        Result = "Passed.";
+}
+else
+{
+    if (grade &gt;= 60)
+        Result = "Needs improvement.";
+    else
+        Result = "Failed.";
+}</code></pre>
+    </details>
+</section>
+
+<section id="age" aria-labelledby="age-title" class="example">
+    <h2 id="age-title" class="text-2xl font-semibold tracking-tight">Age Group</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Group an age into child, teenager, adult, or senior using practice ranges.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Age" asp-fragment="age" method="post" class="example-form">
+            <div>
+                <label asp-for="Age.Years" class="form-label">Age</label>
+                <input asp-for="Age.Years" type="number" step="1" min="0" max="120" required class="form-input" aria-describedby="Age_Years-error" />
+                <span asp-validation-for="Age.Years" id="Age_Years-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Check age group</button>
+    </form>
+    @if (Model.Age.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Age.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int age = Years.GetValueOrDefault();
+if (age &gt;= 18)
+{
+    if (age &gt;= 60)
+        Result = "Senior";
+    else
+        Result = "Adult";
+}
+else
+{
+    if (age &gt;= 13)
+        Result = "Teenager";
+    else
+        Result = "Child";
+}</code></pre>
+    </details>
+</section>
+
+<section id="largest" aria-labelledby="largest-title" class="example">
+    <h2 id="largest-title" class="text-2xl font-semibold tracking-tight">Largest of Three Numbers</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Compare three values using nested if...else statements. Equal values are allowed.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Largest" asp-fragment="largest" method="post" class="example-form">
+            <div>
+                <label asp-for="Largest.First" class="form-label">First number</label>
+                <input asp-for="Largest.First" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Largest_First-error" />
+                <span asp-validation-for="Largest.First" id="Largest_First-error" class="field-error"></span>
+            </div>
+            <div>
+                <label asp-for="Largest.Second" class="form-label">Second number</label>
+                <input asp-for="Largest.Second" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Largest_Second-error" />
+                <span asp-validation-for="Largest.Second" id="Largest_Second-error" class="field-error"></span>
+            </div>
+            <div>
+                <label asp-for="Largest.Third" class="form-label">Third number</label>
+                <input asp-for="Largest.Third" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Largest_Third-error" />
+                <span asp-validation-for="Largest.Third" id="Largest_Third-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Find largest</button>
+    </form>
+    @if (Model.Largest.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Largest.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>int first = First.GetValueOrDefault();
+int second = Second.GetValueOrDefault();
+int third = Third.GetValueOrDefault();
+int largest;
+if (first &gt;= second)
+{
+    if (first &gt;= third)
+        largest = first;
+    else
+        largest = third;
+}
+else
+{
+    if (second &gt;= third)
+        largest = second;
+    else
+        largest = third;
+}
+Result = $"Largest number: {largest}";</code></pre>
+    </details>
+</section>
+
+<section id="shipping" aria-labelledby="shipping-title" class="example">
+    <h2 id="shipping-title" class="text-2xl font-semibold tracking-tight">Shipping Fee</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Practice fees in pesos: orders of ₱1,000 or more cost ₱50 (free for members). Smaller orders cost ₱100 (₱50 for members).</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Shipping" asp-fragment="shipping" method="post" class="example-form">
+            <div>
+                <label asp-for="Shipping.OrderTotal" class="form-label">Order total (₱)</label>
+                <input asp-for="Shipping.OrderTotal" type="number" step="any" min="0" max="1000000" required class="form-input" aria-describedby="Shipping_OrderTotal-error" />
+                <span asp-validation-for="Shipping.OrderTotal" id="Shipping_OrderTotal-error" class="field-error"></span>
+            </div>
+            <div>
+                <label class="flex min-h-11 items-center gap-3 font-semibold"><input asp-for="Shipping.IsMember" class="h-5 w-5 accent-course-green" aria-describedby="Shipping_IsMember-error" /> Member</label>
+                <span asp-validation-for="Shipping.IsMember" id="Shipping_IsMember-error" class="field-error"></span>
+            </div>
+        <button type="submit" class="action-button">Calculate shipping</button>
+    </form>
+    @if (Model.Shipping.Result != null)
+    {
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Shipping.Result</output></pre>
+    }
+    <details class="mt-6">
+        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
+        <pre class="code-example"><code>decimal fee;
+if (OrderTotal &gt;= 1000)
+{
+    if (IsMember)
+        fee = 0;
+    else
+        fee = 50;
+}
+else
+{
+    if (IsMember)
+        fee = 50;
+    else
+        fee = 100;
+}
+Result = $"Shipping fee: ₱{fee:F2}";</code></pre>
+    </details>
+</section>

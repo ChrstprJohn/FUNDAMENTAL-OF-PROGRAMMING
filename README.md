@@ -6,7 +6,7 @@ A simple ASP.NET Core MVC course project with locally compiled Tailwind CSS. The
 
 ## Current setup
 
-Four course pages are ready as empty lesson shells:
+Four course pages contain 20 working examples:
 
 | Page | URL | Required examples |
 | --- | --- | --- |
@@ -15,9 +15,22 @@ Four course pages are ready as empty lesson shells:
 | Loops | `/loops` | 1 for, 2 while, 2 do...while |
 | Arrays | `/arrays` | 2 one-dimensional, 3 two-dimensional |
 
-The root URL redirects to Basic Input-Output. The 20 examples are not implemented yet. Next, the student builds only the Basic Calculator using [the step-by-step guide](BASIC-CALCULATOR-GUIDE.md). The agent implements the other four Basic Input-Output examples and the remaining topics afterward.
+The root URL redirects to Basic Input-Output. Each example has its own validated form, result, and expandable C# logic. Calculation logic lives in the models; controllers receive requests and choose the view.
 
 The five chosen Basic Input-Output examples are Basic Calculator, BMI Calculator, Temperature Converter, Personalized Greeting Generator, and Circle Area & Circumference (radius input; area and circumference output).
+
+BMI accepts kilograms and centimetres and displays only the calculated value. Temperature conversion supports Celsius to Fahrenheit and Fahrenheit to Celsius.
+
+The other examples use simple practice rules:
+
+- **Nested If...Else:** number sign, grade checker, age group, largest of three numbers, and shipping fee.
+- **For:** multiplication table from 1 to 10.
+- **While:** counting from 1 to N and adding a number's digits.
+- **Do...while:** countdown to zero and sum from 1 to N.
+- **One-dimensional arrays:** sum and largest value of five numbers.
+- **Two-dimensional arrays:** display, row sums, and transpose of a 2×2 matrix.
+
+Array inputs are comma-separated whole numbers from -1000 to 1000. Loop limits are bounded and shown on their fields. The grade, age, and shipping classifications are exercise rules, not institutional policies.
 
 ## Run locally
 
@@ -39,15 +52,31 @@ Tailwind uses the [official CLI installation](https://tailwindcss.com/docs/insta
 
 ## MVC structure
 
-- `Controllers/`: request handling and view selection. The home controller currently provides the four topic actions and the error action.
-- `Models/`: typed input/output data and validation. Only the error model is needed for the static setup.
-- `Views/`: the four topic views, a shared layout, and an error view.
+- `Controllers/`: Home handles Basic Input-Output; NestedIfElse, Loops, and Arrays each have a topic controller.
+- `Models/`: typed form data, validation, and calculations. Page models group the five forms for each topic.
+- `Views/`: four topic views, a shared layout, a validation summary, and an error view.
 - `Styles/site.css`: Tailwind input and small shared styles.
 - `wwwroot/css/site.css`: generated stylesheet; rebuild instead of editing it.
 
 Custom controller, model, and view filenames start with `PICARDOCHRISTOPHERJOHN_24-1635_`. C# class and namespace identifiers use `24_1635` because hyphens are not valid in identifiers. View folders match the controller class name without `Controller`. Framework entry points keep their required names.
 
-Read [AGENTS.md](AGENTS.md) before changing the project. It records naming, MVC, readability, design, planned coverage, and the guided Basic Input-Output workflow.
+Read [AGENTS.md](AGENTS.md) before changing the project. It records naming, MVC, readability, design, and coverage. The [calculator guide](BASIC-CALCULATOR-GUIDE.md) is the original standalone learning exercise; the current page wraps it alongside the other four forms.
+
+## Verification
+
+From the repository's outer folder, run the dependency-free model checks:
+
+```powershell
+dotnet run --project .\tests\Examples\Examples.csproj
+```
+
+With the application running in a foreground terminal, use another PowerShell 7 terminal at the outer folder to check all 20 forms, validation, encoding, and antiforgery:
+
+```powershell
+.\tests\Test-WebExamples.ps1
+```
+
+Each form submits independently and returns the same topic page. There is no database or saved submission history.
 
 ## Windows generated-file path fix
 
