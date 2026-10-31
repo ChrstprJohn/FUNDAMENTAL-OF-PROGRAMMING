@@ -17,6 +17,8 @@
 - Example files: `PICARDOCHRISTOPHERJOHN_24-1635_BasicIOController.cs`, `PICARDOCHRISTOPHERJOHN_24-1635_basicoutput.cshtml`, and `PICARDOCHRISTOPHERJOHN_24-1635_BasicOutputModel.cs`.
 - C# identifiers cannot contain hyphens. Use `PICARDOCHRISTOPHERJOHN_24_1635_` for classes and namespaces, while preserving `24-1635` in filenames. Retain the MVC `Controller` suffix on controller classes and files.
 - Match view folders to the controller class name without its `Controller` suffix, and explicitly return the prefixed view name from the action.
+- Name topic controllers and view folders after their topic: BasicIO, NestedIfElse, Loops, and Arrays. Do not use the starter Home name for the Basic Input-Output topic.
+- Group models and page models under `Models/BasicIO`, `Models/NestedIfElse`, `Models/Loops`, `Models/Arrays`, and `Models/Shared`. Match namespaces to those folders; shared error models belong in Shared.
 - Apply the prefix to custom shared views and layouts too. Keep framework entry-point names such as `Program.cs`, `_ViewImports.cshtml`, and `_ViewStart.cshtml` unchanged. Standard configuration, asset, documentation, and generated files keep their normal names.
 
 ## Readability and MVC

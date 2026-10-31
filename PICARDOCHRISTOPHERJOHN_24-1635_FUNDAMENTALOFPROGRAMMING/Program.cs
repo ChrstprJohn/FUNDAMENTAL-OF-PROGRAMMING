@@ -19,7 +19,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=PICARDOCHRISTOPHERJOHN_24_1635_Home}/{action=Index}/{id?}")
+    pattern: "{controller=PICARDOCHRISTOPHERJOHN_24_1635_BasicIO}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 app.Run();

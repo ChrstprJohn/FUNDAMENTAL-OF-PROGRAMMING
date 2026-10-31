@@ -52,13 +52,15 @@ Tailwind uses the [official CLI installation](https://tailwindcss.com/docs/insta
 
 ## MVC structure
 
-- `Controllers/`: Home handles Basic Input-Output; NestedIfElse, Loops, and Arrays each have a topic controller.
-- `Models/`: typed form data, validation, and calculations. Page models group the five forms for each topic.
+- `Controllers/`: BasicIO, NestedIfElse, Loops, and Arrays each have a topic controller.
+- `Models/`: typed form data, validation, and calculations, organized into BasicIO, NestedIfElse, Loops, Arrays, and Shared folders. Each topic's page model lives beside its form models.
 - `Views/`: four topic views, a shared layout, a validation summary, and an error view.
 - `Styles/site.css`: Tailwind input and small shared styles.
 - `wwwroot/css/site.css`: generated stylesheet; rebuild instead of editing it.
 
 Custom controller, model, and view filenames start with `PICARDOCHRISTOPHERJOHN_24-1635_`. C# class and namespace identifiers use `24_1635` because hyphens are not valid in identifiers. View folders match the controller class name without `Controller`. Framework entry points keep their required names.
+
+The Basic Input-Output view is in `Views/PICARDOCHRISTOPHERJOHN_24_1635_BasicIO/`. Its models are in `Models/BasicIO/`; model namespaces include the topic folder name.
 
 Read [AGENTS.md](AGENTS.md) before changing the project. It records naming, MVC, readability, design, and coverage. The [calculator guide](BASIC-CALCULATOR-GUIDE.md) is the original standalone learning exercise; the current page wraps it alongside the other four forms.
 

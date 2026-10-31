@@ -32,6 +32,12 @@ function Assert-Invalid([string]$route, [hashtable]$body, [string]$message) {
     $script:checks++
 }
 
+foreach ($route in @('/', '/error')) {
+    $page = Invoke-WebRequest -Uri "$BaseUrl$route" -WebSession $session
+    if ($page.StatusCode -ne 200) { throw "Failed route: $route" }
+    $checks++
+}
+
 foreach ($route in @('/basic-io', '/nested-if-else', '/loops', '/arrays')) {
     $page = Invoke-WebRequest -Uri "$BaseUrl$route" -WebSession $session
     if ([regex]::Matches($page.Content, '<section id=').Count -ne 5) {

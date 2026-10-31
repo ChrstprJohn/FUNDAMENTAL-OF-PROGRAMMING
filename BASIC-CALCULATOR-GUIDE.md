@@ -9,13 +9,13 @@ The flow is: browser form → controller checks validation → model calculates 
 
 ## 1. Create the model
 
-In `Models`, create **`PICARDOCHRISTOPHERJOHN_24-1635_CalculatorModel.cs`**. Paste:
+In `Models/BasicIO`, create **`PICARDOCHRISTOPHERJOHN_24-1635_CalculatorModel.cs`**. Paste:
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models;
+namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.BasicIO;
 
 public class PICARDOCHRISTOPHERJOHN_24_1635_CalculatorModel
 {
@@ -64,9 +64,9 @@ The filename keeps `24-1635`; the class and namespace use `24_1635` because C# i
 
 ## 2. Update the controller
 
-Open **`Controllers/PICARDOCHRISTOPHERJOHN_24-1635_HomeController.cs`**.
+Open **`Controllers/PICARDOCHRISTOPHERJOHN_24-1635_BasicIOController.cs`**.
 
-Find the current `[HttpGet("/basic-io")]` attribute and `BasicIO()` method. Replace only that attribute and method with both methods below. Keep the namespace, class, imports, and all other actions. The existing `using ...Models;` import already makes the new model available.
+Find the current `[HttpGet("/basic-io")]` attribute and `BasicIO()` method. Replace only that attribute and method with both methods below. Keep the namespace, class, imports, and all other actions. The existing `using ...Models.BasicIO;` import already makes the new model available.
 
 ```csharp
 [HttpGet("/basic-io")]
@@ -108,7 +108,7 @@ GET opens the form. POST receives its values, checks validation, asks the model 
 
 ## 3. Update the view
 
-Open **`Views/PICARDOCHRISTOPHERJOHN_24_1635_Home/PICARDOCHRISTOPHERJOHN_24-1635_basicio.cshtml`**.
+Open **`Views/PICARDOCHRISTOPHERJOHN_24_1635_BasicIO/PICARDOCHRISTOPHERJOHN_24-1635_basicio.cshtml`**.
 
 Replace that file's contents with:
 
@@ -125,7 +125,7 @@ Replace that file's contents with:
 <section aria-labelledby="calculator-title" class="mt-8 bg-course-light p-6 sm:p-8">
     <h2 id="calculator-title" class="text-2xl font-semibold">Basic Calculator</h2>
 
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Home"
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO"
           asp-action="BasicIO" method="post" class="mt-6 max-w-lg space-y-5">
         <div asp-validation-summary="ModelOnly" class="text-red-800" role="alert"></div>
 

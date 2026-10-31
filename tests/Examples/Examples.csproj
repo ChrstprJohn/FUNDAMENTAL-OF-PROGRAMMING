@@ -7,6 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <Compile Include="../../PICARDOCHRISTOPHERJOHN_24-1635_FUNDAMENTALOFPROGRAMMING/Models/*.cs" Link="Models/%(Filename)%(Extension)" />
+    <Compile Include="../../PICARDOCHRISTOPHERJOHN_24-1635_FUNDAMENTALOFPROGRAMMING/Models/**/*.cs" Link="Models/%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>
