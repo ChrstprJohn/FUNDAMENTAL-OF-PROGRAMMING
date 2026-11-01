@@ -23,14 +23,14 @@ BMI accepts kilograms and centimetres and displays only the calculated value. Te
 
 The other examples use simple practice rules:
 
-- **Nested If...Else:** number sign, grade checker, age group, largest of three numbers, and shipping fee.
+- **Nested If...Else:** number sign, grade checker, age group, largest of three numbers, and number sign and parity.
 - **For:** multiplication table from 1 to 10.
-- **While:** counting from 1 to N and adding a number's digits.
-- **Do...while:** countdown to zero and sum from 1 to N.
+- **While:** counting from 1 to N and printing a star line.
+- **Do...while:** countdown to zero and a star triangle.
 - **One-dimensional arrays:** sum and largest value of five numbers.
-- **Two-dimensional arrays:** display, row sums, and transpose of a 2×2 matrix.
+- **Two-dimensional arrays:** Row & Column Totals, Highest & Lowest + Coordinates, and Multiplication Table Grid (1 to 10).
 
-Array inputs are comma-separated whole numbers from -1000 to 1000. Loop limits are bounded and shown on their fields. The grade, age, and shipping classifications are exercise rules, not institutional policies.
+Array inputs are editable, indexed cells containing whole numbers from -1000 to 1000. The 1D examples use five indexed inputs. The 2D examples use editable 2×2 grids or a generated multiplication grid. Loop limits are bounded and shown on their fields. The grade and age classifications are exercise rules, not institutional policies.
 
 ## Run locally
 

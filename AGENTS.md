@@ -5,7 +5,7 @@
 - Clean unused template code instead of adding new work on top of it.
 - Set up the foundation first. Implement each programming example only when the user discusses or requests it; do not invent completed lessons.
 - There are four main content pages/views: Basic Input-Output, Nested If...Else, Loops, and Arrays. Shared layout and error views are supporting infrastructure, not extra course pages.
-- The student completed the guided Basic Calculator. Preserve that model's calculation logic when extending the course. The user has now authorized completing all remaining examples.
+- The student completed the guided Basic Calculator. Preserve that model's calculation logic when extending the course. The user has now authorized completing all remaining examples. The user selected the final 2D-array samples: row/column totals, highest/lowest with coordinates, and a multiplication table grid.
 
 ## Required naming convention
 - Project: `[LASTNAME][FIRSTNAME]_[STUDENTNO]_[PROJECTNAME]`.
@@ -63,10 +63,10 @@ The student created the Basic Calculator from explained snippets; the agent adde
 Keep each example within the Basic Input-Output topic view. BMI uses kilograms and centimetres; temperature supports Celsius/Fahrenheit in both directions. Validate numeric input and handle invalid operations such as division by zero.
 
 ### Other implemented examples
-- Nested if...else: number sign, grade checker, age group, largest of three, and shipping fee.
-- For: multiplication table. While: count to N and sum of digits. Do...while: countdown and sum to N.
+- Nested if...else: number sign, grade checker, age group, largest of three, and number sign and parity.
+- For: multiplication table. While: count to N and star line. Do...while: countdown and star triangle.
 - One-dimensional arrays: sum and largest value of five numbers.
-- Two-dimensional arrays: display, row sums, and transpose of a 2×2 matrix.
+- Two-dimensional arrays: Row & Column Totals, Highest & Lowest + Coordinates, and Multiplication Table Grid (1 to 10).
 - Each form binds only its own prefixed input model. Topic page models group the five forms for rendering; submitting one example must not validate unrelated forms.
 - Keep consistent shared styles, linked validation summaries, field errors, keyboard focus, and code disclosures across all four pages.
 

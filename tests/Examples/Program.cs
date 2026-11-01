@@ -66,10 +66,10 @@ Check(IsValid(largest), "Largest of three accepts valid input");
 largest.Calculate();
 Check(largest.Result == "Largest number: -1", "Largest of three result");
 
-var shipping = new PICARDOCHRISTOPHERJOHN_24_1635_ShippingModel { OrderTotal = 1000, IsMember = true };
-Check(IsValid(shipping), "Shipping accepts valid input");
-shipping.Calculate();
-Check(shipping.Result == "Shipping fee: ₱0.00", "Shipping result");
+var parity = new PICARDOCHRISTOPHERJOHN_24_1635_ParityModel { Value = 2 };
+Check(IsValid(parity), "Number Check accepts valid input");
+parity.Calculate();
+Check(parity.Result == "Positive and even.", "Number Check result");
 
 var table = new PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationModel { Number = 3 };
 Check(IsValid(table), "For multiplication accepts valid input");
@@ -81,45 +81,30 @@ Check(IsValid(count), "While count accepts valid input");
 count.Calculate();
 Check(count.Result == "1, 2, 3", "While count result");
 
-var digits = new PICARDOCHRISTOPHERJOHN_24_1635_DigitSumModel { Number = 123 };
-Check(IsValid(digits), "While digits accepts valid input");
+var digits = new PICARDOCHRISTOPHERJOHN_24_1635_StarLineModel { Count = 5 };
+Check(IsValid(digits), "While star line accepts valid input");
 digits.Calculate();
-Check(digits.Result == "Sum of digits: 6", "While digits result");
+Check(digits.Result == "*****", "While star line result");
 
 var countdown = new PICARDOCHRISTOPHERJOHN_24_1635_CountdownModel { Start = 3 };
 Check(IsValid(countdown), "Do-while countdown accepts valid input");
 countdown.Calculate();
 Check(countdown.Result == "3, 2, 1, 0", "Do-while countdown result");
 
-var sum = new PICARDOCHRISTOPHERJOHN_24_1635_NumberSumModel { Limit = 5 };
-Check(IsValid(sum), "Do-while sum accepts valid input");
+var sum = new PICARDOCHRISTOPHERJOHN_24_1635_StarTriangleModel { Rows = 3 };
+Check(IsValid(sum), "Do-while triangle accepts valid input");
 sum.Calculate();
-Check(sum.Result == "Sum: 15", "Do-while sum result");
+Check(sum.Result == "*\n**\n***", "Do-while triangle result");
 
-var arraySum = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Values = "1, 2, 3, 4, 5" };
+var arraySum = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2, 3, 4, 5] };
 Check(IsValid(arraySum), "Array sum accepts valid input");
 arraySum.CalculateSum();
 Check(arraySum.Result == "Sum: 15", "Array sum result");
 
-var arrayLargest = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Values = "-5,-2,-9,-1,-3" };
+var arrayLargest = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [-5, -2, -9, -1, -3] };
 Check(IsValid(arrayLargest), "Array maximum accepts valid input");
 arrayLargest.FindLargest();
 Check(arrayLargest.Result == "Largest value: -1", "Array maximum result");
-
-var matrix = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Values = "1,2,3,4" };
-Check(IsValid(matrix), "Matrix display accepts valid input");
-matrix.Display();
-Check(matrix.Result == "1  2\n3  4", "Matrix display result");
-
-var rows = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Values = "1,2,3,4" };
-Check(IsValid(rows), "Matrix row totals accepts valid input");
-rows.CalculateRowTotals();
-Check(rows.Result == "Row 1 sum: 3\nRow 2 sum: 7", "Matrix row totals result");
-
-var transpose = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Values = "1,2,3,4" };
-Check(IsValid(transpose), "Matrix transpose accepts valid input");
-transpose.Transpose();
-Check(transpose.Result == "1  3\n2  4", "Matrix transpose result");
 
 foreach (var (operation, expected) in new[] { ("subtract", 5m), ("multiply", 50m), ("divide", 2m) })
 {
@@ -170,26 +155,26 @@ foreach (var (first, second, third, expected) in new[] { (3, 2, 1, 3), (2, 1, 3,
     largest.Calculate();
     Check(largest.Result == $"Largest number: {expected}", "Largest number branches and ties");
 }
-foreach (var (order, member, expected) in new[] { (1000m, false, 50m), (999m, true, 50m), (999m, false, 100m) })
+foreach (var (value, expected) in new[] { (3, "Positive and odd."), (-2, "Negative and even."), (-3, "Negative and odd."), (0, "Zero is even.") })
 {
-    shipping.OrderTotal = order; shipping.IsMember = member;
-    shipping.Calculate();
-    Check(shipping.Result == $"Shipping fee: ₱{expected:F2}", "Shipping branch");
+    parity.Value = value;
+    parity.Calculate();
+    Check(parity.Result == expected, "Number Check branch");
 }
-digits.Number = 0;
+digits.Count = 1;
 digits.Calculate();
-Check(digits.Result == "Sum of digits: 0", "Zero digit sum");
+Check(digits.Result == "*", "Single star");
 countdown.Start = 1;
 countdown.Calculate();
 Check(countdown.Result == "1, 0", "Countdown lower bound");
-sum.Limit = 100;
+sum.Rows = 20;
 sum.Calculate();
-Check(sum.Result == "Sum: 5050", "Sum upper bound");
+Check(sum.Result!.Split('\n').Length == 20 && sum.Result.Split('\n')[19] == new string('*', 20), "Triangle upper bound");
 
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_BmiModel { Weight = 70, Height = 0 }), "Reject zero height");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_BmiModel { Weight = double.NaN, Height = 175 }), "Reject nonfinite weight");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_BmiModel { Weight = 0.9, Height = 175 }), "Reject fractional out-of-range weight");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ShippingModel { OrderTotal = decimal.MaxValue }), "Reject oversized order without overflow");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ParityModel { Value = 1000001 }), "Reject out-of-range number");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CircleModel { Radius = -1 }), "Reject negative radius");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_TemperatureModel { Value = 0, Direction = "invalid" }), "Reject invalid conversion");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_GreetingModel { Name = " " }), "Reject blank greeting");
@@ -197,11 +182,39 @@ Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_GradeModel { Score = 101 }), "
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_AgeGroupModel { Years = -1 }), "Reject negative age");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CountModel { Limit = 1000000 }), "Bound while loop");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CountdownModel { Start = 0 }), "Bound countdown");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_NumberSumModel { Limit = 0 }), "Bound do-while sum");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_StarTriangleModel { Rows = 0 }), "Bound do-while sum");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CalculatorModel()), "Reject missing calculator inputs");
-foreach (string invalid in new[] { "", "1,2", "1,2,3,4,no", "1,2,3,4,1001", "1,,3,4,5", "1,2,3,4,5,6" })
-    Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Values = invalid }), "Reject malformed array");
-foreach (string invalid in new[] { "", "1,2,3", "1,2,3,4,5", "1,2,3,1.5" })
-    Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Values = invalid }), "Reject malformed matrix");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2] }), "Reject incomplete array");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2, null, 4, 5] }), "Reject missing element");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2, 3, 4, 1001] }), "Reject out-of-range element");
+Check(arraySum.ArrayContents == "int[] numbers = { 1, 2, 3, 4, 5 };", "Show populated array");
+
+
+var totals = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel();
+Check(IsValid(totals), "Totals sample valid");
+totals.CalculateTotals();
+Check(totals.Result == "Row index 0: 30, Row index 1: 70\nColumn index 0: 40, Column index 1: 60", "Row and column totals");
+totals.Cells = [-2, 0, 3, -1]; totals.CalculateTotals();
+Check(totals.Result == "Row index 0: -2, Row index 1: 2\nColumn index 0: 1, Column index 1: -1", "Edited totals");
+var extremes = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel();
+extremes.FindExtremes();
+Check(extremes.Result == "Highest: 40 at numbers[1,1]\nLowest: 10 at numbers[0,0]", "Highest and lowest coordinates");
+extremes.Cells = [7, -1, 7, -1]; extremes.FindExtremes();
+Check(extremes.Result == "Highest: 7 at numbers[0,0]; numbers[1,0]\nLowest: -1 at numbers[0,1]; numbers[1,1]", "All tied coordinates");
+extremes.Cells = [0, 0, 0, 0]; extremes.FindExtremes();
+Check(extremes.Result!.Contains("numbers[1,1]"), "All equal values");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Cells = [1] }), "Incomplete matrix");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Cells = [1, 2, null, 4] }), "Missing matrix cell");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Cells = [1, 2, 3, 1001] }), "Matrix bounds");
+var grid = new PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationGridModel();
+Check(IsValid(grid), "Grid defaults valid");
+grid.Calculate();
+Check(grid.Result!.Split('\n').Length == 10 && grid.Result.Split('\n')[9].EndsWith(" 100"), "10 by 10 multiplication grid");
+grid.Rows = 2; grid.Columns = 3; grid.Calculate();
+Check(grid.Result == "   1   2   3\n   2   4   6", "Editable multiplication dimensions");
+grid.Rows = 0;
+Check(!IsValid(grid), "Reject zero grid dimension");
+grid.Rows = 11;
+Check(!IsValid(grid), "Bound grid size");
 
 Console.WriteLine($"Passed {checks} checks across all 20 examples.");

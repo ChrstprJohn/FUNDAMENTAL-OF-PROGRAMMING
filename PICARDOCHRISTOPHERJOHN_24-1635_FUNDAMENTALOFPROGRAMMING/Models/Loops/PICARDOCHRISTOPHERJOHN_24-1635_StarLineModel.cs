@@ -3,25 +3,24 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.Loops;
 
-public class PICARDOCHRISTOPHERJOHN_24_1635_NumberSumModel
+public class PICARDOCHRISTOPHERJOHN_24_1635_StarLineModel
 {
     [Required]
-    [Range(1, 100)]
-    public int? Limit { get; set; }
+    [Range(1, 50)]
+    public int? Count { get; set; }
 
     [BindNever]
     public string? Result { get; private set; }
 
     public void Calculate()
     {
-        int current = 1;
-        int total = 0;
-        do
+        int current = 0;
+        string stars = "";
+        while (current < Count.GetValueOrDefault())
         {
-            total += current;
+            stars += "*";
             current++;
         }
-        while (current <= Limit.GetValueOrDefault());
-        Result = $"Sum: {total}";
+        Result = stars;
     }
 }

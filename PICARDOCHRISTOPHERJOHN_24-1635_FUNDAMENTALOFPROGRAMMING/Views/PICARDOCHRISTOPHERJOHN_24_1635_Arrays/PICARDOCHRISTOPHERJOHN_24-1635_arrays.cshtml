@@ -6,37 +6,44 @@
 }
 
 <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Arrays</h1>
-<p class="mt-4 max-w-2xl text-base leading-relaxed text-stone-700 sm:text-lg">Two one-dimensional array examples and three two-dimensional array examples. Values must be whole numbers from -1000 to 1000.</p>
+<p class="mt-4 max-w-2xl text-base leading-relaxed text-stone-700 sm:text-lg">Populate and work with one-dimensional and two-dimensional arrays. Each input represents an indexed array element.</p>
 <details class="example-menu mt-5">
     <summary class="min-h-11 cursor-pointer py-2 font-semibold">Examples on this page</summary>
     <nav aria-label="Examples on this page" class="mt-2 flex flex-wrap gap-x-5 gap-y-3">
     <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#sum">Sum of Five Numbers</a>
     <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#largest">Largest Value in an Array</a>
-    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#display">Display a 2×2 Matrix</a>
-    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#row-totals">Sum Each Matrix Row</a>
-    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#transpose">Transpose a Matrix</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#totals">Row &amp; Column Totals</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#extremes">Highest &amp; Lowest + Coordinates</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#grid">Multiplication Table Grid (1 to 10)</a>
     </nav>
 </details>
 <partial name="PICARDOCHRISTOPHERJOHN_24-1635_validation" />
 
 <section id="sum" aria-labelledby="sum-title" class="example">
     <h2 id="sum-title" class="text-2xl font-semibold tracking-tight">Sum of Five Numbers</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">One-dimensional array: enter five whole numbers separated by commas, for example 1, 2, 3, 4, 5.</p>
+    <p class="mt-3 leading-relaxed text-stone-700">Fill numbers[0] through numbers[4]. The program copies these inputs into an int[] array, then adds its elements.</p>
     <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Sum" asp-fragment="sum" method="post" class="example-form">
-            <div>
-                <label asp-for="Sum.Values" class="form-label">Five whole numbers</label>
-                <input asp-for="Sum.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Sum_Values-error" />
-                <span asp-validation-for="Sum.Values" id="Sum_Values-error" class="field-error"></span>
-            </div>
-        <button type="submit" class="action-button">Calculate sum</button>
+<div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
+<div><label asp-for="Sum.Numbers[0]" class="form-label">numbers[0]</label><input asp-for="Sum.Numbers[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[0]" class="field-error"></span></div>
+<div><label asp-for="Sum.Numbers[1]" class="form-label">numbers[1]</label><input asp-for="Sum.Numbers[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[1]" class="field-error"></span></div>
+<div><label asp-for="Sum.Numbers[2]" class="form-label">numbers[2]</label><input asp-for="Sum.Numbers[2]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[2]" class="field-error"></span></div>
+<div><label asp-for="Sum.Numbers[3]" class="form-label">numbers[3]</label><input asp-for="Sum.Numbers[3]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[3]" class="field-error"></span></div>
+<div><label asp-for="Sum.Numbers[4]" class="form-label">numbers[4]</label><input asp-for="Sum.Numbers[4]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[4]" class="field-error"></span></div>
+</div>
+        <button type="submit" class="action-button">Populate array and sum</button>
     </form>
     @if (Model.Sum.Result != null)
     {
+        <pre class="mt-5 whitespace-pre-wrap break-words bg-white p-4"><code>@Model.Sum.ArrayContents</code></pre>
         <pre class="example-output" role="status" tabindex="-1"><output>@Model.Sum.Result</output></pre>
     }
     <details class="mt-6">
         <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>int total = 0;
+        <pre class="code-example"><code>int[] numbers = new int[5];
+for (int index = 0; index &lt; numbers.Length; index++)
+    numbers[index] = Numbers[index].GetValueOrDefault();
+
+int total = 0;
 foreach (int number in numbers)
     total += number;
 Result = $"Sum: {total}";</code></pre>
@@ -45,22 +52,29 @@ Result = $"Sum: {total}";</code></pre>
 
 <section id="largest" aria-labelledby="largest-title" class="example">
     <h2 id="largest-title" class="text-2xl font-semibold tracking-tight">Largest Value in an Array</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">One-dimensional array: compare five values. Negative numbers and duplicates are allowed.</p>
+    <p class="mt-3 leading-relaxed text-stone-700">Fill five indexed elements. The program populates an int[] array, then compares its elements to find the largest.</p>
     <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Largest" asp-fragment="largest" method="post" class="example-form">
-            <div>
-                <label asp-for="Largest.Values" class="form-label">Five whole numbers</label>
-                <input asp-for="Largest.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Largest_Values-error" />
-                <span asp-validation-for="Largest.Values" id="Largest_Values-error" class="field-error"></span>
-            </div>
-        <button type="submit" class="action-button">Find largest</button>
+<div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
+<div><label asp-for="Largest.Numbers[0]" class="form-label">numbers[0]</label><input asp-for="Largest.Numbers[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[0]" class="field-error"></span></div>
+<div><label asp-for="Largest.Numbers[1]" class="form-label">numbers[1]</label><input asp-for="Largest.Numbers[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[1]" class="field-error"></span></div>
+<div><label asp-for="Largest.Numbers[2]" class="form-label">numbers[2]</label><input asp-for="Largest.Numbers[2]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[2]" class="field-error"></span></div>
+<div><label asp-for="Largest.Numbers[3]" class="form-label">numbers[3]</label><input asp-for="Largest.Numbers[3]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[3]" class="field-error"></span></div>
+<div><label asp-for="Largest.Numbers[4]" class="form-label">numbers[4]</label><input asp-for="Largest.Numbers[4]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[4]" class="field-error"></span></div>
+</div>
+        <button type="submit" class="action-button">Populate array and find largest</button>
     </form>
     @if (Model.Largest.Result != null)
     {
+        <pre class="mt-5 whitespace-pre-wrap break-words bg-white p-4"><code>@Model.Largest.ArrayContents</code></pre>
         <pre class="example-output" role="status" tabindex="-1"><output>@Model.Largest.Result</output></pre>
     }
     <details class="mt-6">
         <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>int largest = numbers[0];
+        <pre class="code-example"><code>int[] numbers = new int[5];
+for (int index = 0; index &lt; numbers.Length; index++)
+    numbers[index] = Numbers[index].GetValueOrDefault();
+
+int largest = numbers[0];
 foreach (int number in numbers)
 {
     if (number &gt; largest)
@@ -70,80 +84,120 @@ Result = $"Largest value: {largest}";</code></pre>
     </details>
 </section>
 
-<section id="display" aria-labelledby="display-title" class="example">
-    <h2 id="display-title" class="text-2xl font-semibold tracking-tight">Display a 2×2 Matrix</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">Two-dimensional array: enter four numbers in row order. For example, 1, 2, 3, 4 becomes two rows: 1 2 and 3 4.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Display" asp-fragment="display" method="post" class="example-form">
-            <div>
-                <label asp-for="Display.Values" class="form-label">Four whole numbers</label>
-                <input asp-for="Display.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Display_Values-error" />
-                <span asp-validation-for="Display.Values" id="Display_Values-error" class="field-error"></span>
-            </div>
-        <button type="submit" class="action-button">Display matrix</button>
-    </form>
-    @if (Model.Display.Result != null)
-    {
-        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Display.Result</output></pre>
-    }
-    <details class="mt-6">
-        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>int[,] matrix = new int[,] { { numbers[0], numbers[1] }, { numbers[2], numbers[3] } };
-var rows = new List&lt;string&gt;();
-for (int row = 0; row &lt; 2; row++)
-    rows.Add($"{matrix[row, 0]}  {matrix[row, 1]}");
-Result = string.Join("\n", rows);</code></pre>
-    </details>
-</section>
 
-<section id="row-totals" aria-labelledby="row-totals-title" class="example">
-    <h2 id="row-totals-title" class="text-2xl font-semibold tracking-tight">Sum Each Matrix Row</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">Two-dimensional array: add the two values in each row of a 2×2 matrix.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="RowTotals" asp-fragment="row-totals" method="post" class="example-form">
-            <div>
-                <label asp-for="RowTotals.Values" class="form-label">Four whole numbers</label>
-                <input asp-for="RowTotals.Values" type="text" maxlength="100" required class="form-input" aria-describedby="RowTotals_Values-error" />
-                <span asp-validation-for="RowTotals.Values" id="RowTotals_Values-error" class="field-error"></span>
-            </div>
-        <button type="submit" class="action-button">Calculate row sums</button>
-    </form>
-    @if (Model.RowTotals.Result != null)
-    {
-        <pre class="example-output" role="status" tabindex="-1"><output>@Model.RowTotals.Result</output></pre>
-    }
-    <details class="mt-6">
-        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>for (int row = 0; row &lt; 2; row++)
-{
-    int total = 0;
-    for (int column = 0; column &lt; 2; column++)
-        total += matrix[row, column];
-    rows.Add($"Row {row + 1} sum: {total}");
-}</code></pre>
-    </details>
-</section>
 
-<section id="transpose" aria-labelledby="transpose-title" class="example">
-    <h2 id="transpose-title" class="text-2xl font-semibold tracking-tight">Transpose a Matrix</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">Two-dimensional array: swap the rows and columns of a 2×2 matrix.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Transpose" asp-fragment="transpose" method="post" class="example-form">
-            <div>
-                <label asp-for="Transpose.Values" class="form-label">Four whole numbers</label>
-                <input asp-for="Transpose.Values" type="text" maxlength="100" required class="form-input" aria-describedby="Transpose_Values-error" />
-                <span asp-validation-for="Transpose.Values" id="Transpose_Values-error" class="field-error"></span>
-            </div>
-        <button type="submit" class="action-button">Transpose matrix</button>
+<section id="totals" aria-labelledby="totals-title" class="example">
+    <h2 id="totals-title" class="text-2xl font-semibold tracking-tight">Row &amp; Column Totals</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Edit the four sample values to populate an int[2, 2] array. Results use zero-based array indexes, matching the input labels.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Totals" asp-fragment="totals" method="post" class="example-form">
+        <div class="grid grid-cols-2 gap-3">
+            <div><label asp-for="Totals.Cells[0]" class="form-label">numbers[0,0]</label><input asp-for="Totals.Cells[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[0]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[1]" class="form-label">numbers[0,1]</label><input asp-for="Totals.Cells[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[1]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[2]" class="form-label">numbers[1,0]</label><input asp-for="Totals.Cells[2]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[2]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[3]" class="form-label">numbers[1,1]</label><input asp-for="Totals.Cells[3]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[3]" class="field-error"></span></div>
+        </div>
+        <button type="submit" class="action-button">Populate and calculate totals</button>
     </form>
-    @if (Model.Transpose.Result != null)
+    @if (Model.Totals.Result != null)
     {
-        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Transpose.Result</output></pre>
+        <pre class="mt-5 whitespace-pre-wrap break-words bg-white p-4"><code>@Model.Totals.ArrayContents</code></pre>
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Totals.Result</output></pre>
     }
-    <details class="mt-6">
-        <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>int[,] transposed = new int[2, 2];
+    <details class="mt-6"><summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary><pre class="code-example"><code>int[,] numbers = new int[2, 2];
 for (int row = 0; row &lt; 2; row++)
 {
     for (int column = 0; column &lt; 2; column++)
-        transposed[column, row] = matrix[row, column];
-}</code></pre>
-    </details>
+        numbers[row, column] = Cells[row * 2 + column].GetValueOrDefault();
+}
+int[] rowTotals = new int[2];
+int[] columnTotals = new int[2];
+for (int row = 0; row &lt; 2; row++)
+{
+    for (int column = 0; column &lt; 2; column++)
+    {
+        rowTotals[row] += numbers[row, column];
+        columnTotals[column] += numbers[row, column];
+    }
+}
+Result = $"Row index 0: {rowTotals[0]}, Row index 1: {rowTotals[1]}\nColumn index 0: {columnTotals[0]}, Column index 1: {columnTotals[1]}";</code></pre></details>
+</section>
+
+<section id="extremes" aria-labelledby="extremes-title" class="example">
+    <h2 id="extremes-title" class="text-2xl font-semibold tracking-tight">Highest &amp; Lowest + Coordinates</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Edit the four sample values to populate an int[2, 2] array. Results use zero-based array indexes, matching the input labels.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Extremes" asp-fragment="extremes" method="post" class="example-form">
+        <div class="grid grid-cols-2 gap-3">
+            <div><label asp-for="Extremes.Cells[0]" class="form-label">numbers[0,0]</label><input asp-for="Extremes.Cells[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Extremes.Cells[0]" class="field-error"></span></div>
+            <div><label asp-for="Extremes.Cells[1]" class="form-label">numbers[0,1]</label><input asp-for="Extremes.Cells[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Extremes.Cells[1]" class="field-error"></span></div>
+            <div><label asp-for="Extremes.Cells[2]" class="form-label">numbers[1,0]</label><input asp-for="Extremes.Cells[2]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Extremes.Cells[2]" class="field-error"></span></div>
+            <div><label asp-for="Extremes.Cells[3]" class="form-label">numbers[1,1]</label><input asp-for="Extremes.Cells[3]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Extremes.Cells[3]" class="field-error"></span></div>
+        </div>
+        <button type="submit" class="action-button">Populate and find highest / lowest</button>
+    </form>
+    @if (Model.Extremes.Result != null)
+    {
+        <pre class="mt-5 whitespace-pre-wrap break-words bg-white p-4"><code>@Model.Extremes.ArrayContents</code></pre>
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Extremes.Result</output></pre>
+    }
+    <details class="mt-6"><summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary><pre class="code-example"><code>int[,] numbers = new int[2, 2];
+for (int row = 0; row &lt; 2; row++)
+{
+    for (int column = 0; column &lt; 2; column++)
+        numbers[row, column] = Cells[row * 2 + column].GetValueOrDefault();
+}
+int highest = numbers[0, 0];
+int lowest = numbers[0, 0];
+for (int row = 0; row &lt; 2; row++)
+{
+    for (int column = 0; column &lt; 2; column++)
+    {
+        if (numbers[row, column] &gt; highest) highest = numbers[row, column];
+        if (numbers[row, column] &lt; lowest) lowest = numbers[row, column];
+    }
+}
+var highPositions = new List&lt;string&gt;();
+var lowPositions = new List&lt;string&gt;();
+for (int row = 0; row &lt; 2; row++)
+{
+    for (int column = 0; column &lt; 2; column++)
+    {
+        string position = $"numbers[{row},{column}]";
+        if (numbers[row, column] == highest) highPositions.Add(position);
+        if (numbers[row, column] == lowest) lowPositions.Add(position);
+    }
+}
+Result = $"Highest: {highest} at {string.Join("; ", highPositions)}\nLowest: {lowest} at {string.Join("; ", lowPositions)}";</code></pre></details>
+</section>
+
+<section id="grid" aria-labelledby="grid-title" class="example">
+    <h2 id="grid-title" class="text-2xl font-semibold tracking-tight">Multiplication Table Grid (1 to 10)</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Populate an int[,] array with (row + 1) × (column + 1). Both limits start at 10 and can be changed from 1 to 10.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Grid" asp-fragment="grid" method="post" class="example-form">
+        <div class="grid grid-cols-2 gap-3">
+            <div><label asp-for="Grid.Rows" class="form-label">Rows (1–10)</label><input asp-for="Grid.Rows" type="number" step="1" min="1" max="10" required class="form-input" /><span asp-validation-for="Grid.Rows" class="field-error"></span></div>
+            <div><label asp-for="Grid.Columns" class="form-label">Columns (1–10)</label><input asp-for="Grid.Columns" type="number" step="1" min="1" max="10" required class="form-input" /><span asp-validation-for="Grid.Columns" class="field-error"></span></div>
+        </div>
+        <button type="submit" class="action-button">Populate multiplication grid</button>
+    </form>
+    @if (Model.Grid.Result != null)
+    {
+        <pre class="mt-5 whitespace-pre-wrap break-words bg-white p-4"><code>@Model.Grid.ArrayContents</code></pre>
+        <pre class="example-output" role="status" tabindex="-1" style="white-space: pre; overflow-x: auto;"><output>@Model.Grid.Result</output></pre>
+    }
+    <details class="mt-6"><summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary><pre class="code-example"><code>int rows = Rows.GetValueOrDefault();
+int columns = Columns.GetValueOrDefault();
+int[,] table = new int[rows, columns];
+var lines = new List&lt;string&gt;();
+for (int row = 0; row &lt; rows; row++)
+{
+    string line = "";
+    for (int column = 0; column &lt; columns; column++)
+    {
+        table[row, column] = (row + 1) * (column + 1);
+        line += table[row, column].ToString().PadLeft(4);
+    }
+    lines.Add(line);
+}
+Result = string.Join("\n", lines);
+ArrayContents = $"int[,] table = new int[{rows}, {columns}];";</code></pre></details>
 </section>

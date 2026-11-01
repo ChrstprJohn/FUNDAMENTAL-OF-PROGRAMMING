@@ -14,7 +14,7 @@
                         }
                         else
                         {
-                            <a class="underline underline-offset-4" href="@("#" + entry.Key.Replace('.', '_'))">@error.ErrorMessage</a>
+                            <a class="underline underline-offset-4" href="@("#" + entry.Key.Replace('.', '_').Replace('[', '_').Replace(']', '_'))">@error.ErrorMessage</a>
                         }
                     </li>
                 }

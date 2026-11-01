@@ -51,13 +51,13 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElseController : Controller
         return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Largest = model });
     }
 
-    [HttpPost("/nested-if-else/shipping")]
+    [HttpPost("/nested-if-else/parity")]
     [ValidateAntiForgeryToken]
-    public IActionResult Shipping([Bind(Prefix = "Shipping")] PICARDOCHRISTOPHERJOHN_24_1635_ShippingModel model)
+    public IActionResult Parity([Bind(Prefix = "Parity")] PICARDOCHRISTOPHERJOHN_24_1635_ParityModel model)
     {
         if (ModelState.IsValid)
             model.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Shipping = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Parity = model });
     }
 }

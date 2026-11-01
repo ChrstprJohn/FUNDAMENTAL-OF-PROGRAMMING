@@ -5,63 +5,79 @@ namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.Arrays;
 
 public class PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel : IValidatableObject
 {
-    [Required]
-    [StringLength(100)]
-    public string? Values { get; set; }
-
+    public int?[] Cells { get; set; } = [10, 20, 30, 40];
+    [BindNever]
+    public string? ArrayContents { get; private set; }
     [BindNever]
     public string? Result { get; private set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext context)
     {
-        if (!PICARDOCHRISTOPHERJOHN_24_1635_NumberInput.TryRead(Values, 4, out _))
-            yield return new ValidationResult(
-                "Enter exactly 4 comma-separated whole numbers from -1000 to 1000.",
-                [nameof(Values)]);
-    }
-
-    private int[,] ReadMatrix()
-    {
-        PICARDOCHRISTOPHERJOHN_24_1635_NumberInput.TryRead(Values, 4, out int[] numbers);
-        return new int[,] { { numbers[0], numbers[1] }, { numbers[2], numbers[3] } };
-    }
-
-    public void Display()
-    {
-        int[,] matrix = ReadMatrix();
-        var rows = new List<string>();
-        for (int row = 0; row < 2; row++)
+        if (Cells == null || Cells.Length != 4)
         {
-            rows.Add($"{matrix[row, 0]}  {matrix[row, 1]}");
+            yield return new ValidationResult("Fill all four array cells.", ["Cells[0]"]);
+            yield break;
         }
-        Result = string.Join("\n", rows);
-    }
-
-    public void CalculateRowTotals()
-    {
-        int[,] matrix = ReadMatrix();
-        var rows = new List<string>();
-        for (int row = 0; row < 2; row++)
+        for (int index = 0; index < Cells.Length; index++)
         {
-            int total = 0;
-            for (int column = 0; column < 2; column++)
-                total += matrix[row, column];
-
-            rows.Add($"Row {row + 1} sum: {total}");
+            if (!Cells[index].HasValue || Cells[index] < -1000 || Cells[index] > 1000)
+                yield return new ValidationResult("Enter a whole number from -1000 to 1000.", [$"Cells[{index}]"]);
         }
-        Result = string.Join("\n", rows);
     }
 
-    public void Transpose()
+    private int[,] PopulateArray()
     {
-        int[,] matrix = ReadMatrix();
-        int[,] transposed = new int[2, 2];
+        int[,] numbers = new int[2, 2];
         for (int row = 0; row < 2; row++)
         {
             for (int column = 0; column < 2; column++)
-                transposed[column, row] = matrix[row, column];
+                numbers[row, column] = Cells[row * 2 + column].GetValueOrDefault();
         }
+        ArrayContents = "int[,] numbers = { { " + numbers[0, 0] + ", " + numbers[0, 1]
+            + " }, { " + numbers[1, 0] + ", " + numbers[1, 1] + " } };";
+        return numbers;
+    }
 
-        Result = $"{transposed[0, 0]}  {transposed[0, 1]}\n{transposed[1, 0]}  {transposed[1, 1]}";
+    public void CalculateTotals()
+    {
+        int[,] numbers = PopulateArray();
+        int[] rowTotals = new int[2];
+        int[] columnTotals = new int[2];
+        for (int row = 0; row < 2; row++)
+        {
+            for (int column = 0; column < 2; column++)
+            {
+                rowTotals[row] += numbers[row, column];
+                columnTotals[column] += numbers[row, column];
+            }
+        }
+        Result = $"Row index 0: {rowTotals[0]}, Row index 1: {rowTotals[1]}\nColumn index 0: {columnTotals[0]}, Column index 1: {columnTotals[1]}";
+    }
+
+    public void FindExtremes()
+    {
+        int[,] numbers = PopulateArray();
+        int highest = numbers[0, 0];
+        int lowest = numbers[0, 0];
+        for (int row = 0; row < 2; row++)
+        {
+            for (int column = 0; column < 2; column++)
+            {
+                if (numbers[row, column] > highest) highest = numbers[row, column];
+                if (numbers[row, column] < lowest) lowest = numbers[row, column];
+            }
+        }
+        var highPositions = new List<string>();
+        var lowPositions = new List<string>();
+        for (int row = 0; row < 2; row++)
+        {
+            for (int column = 0; column < 2; column++)
+            {
+                string position = $"numbers[{row},{column}]";
+                if (numbers[row, column] == highest) highPositions.Add(position);
+                if (numbers[row, column] == lowest) lowPositions.Add(position);
+            }
+        }
+        Result = $"Highest: {highest} at {string.Join("; ", highPositions)}\nLowest: {lowest} at {string.Join("; ", lowPositions)}";
     }
 }

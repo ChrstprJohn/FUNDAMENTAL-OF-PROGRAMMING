@@ -31,14 +31,14 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_LoopsController : Controller
         return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Count = model });
     }
 
-    [HttpPost("/loops/digits")]
+    [HttpPost("/loops/star-line")]
     [ValidateAntiForgeryToken]
-    public IActionResult Digits([Bind(Prefix = "Digits")] PICARDOCHRISTOPHERJOHN_24_1635_DigitSumModel model)
+    public IActionResult StarLine([Bind(Prefix = "StarLine")] PICARDOCHRISTOPHERJOHN_24_1635_StarLineModel model)
     {
         if (ModelState.IsValid)
             model.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Digits = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { StarLine = model });
     }
 
     [HttpPost("/loops/countdown")]
@@ -51,13 +51,13 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_LoopsController : Controller
         return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Countdown = model });
     }
 
-    [HttpPost("/loops/sum")]
+    [HttpPost("/loops/star-triangle")]
     [ValidateAntiForgeryToken]
-    public IActionResult Sum([Bind(Prefix = "Sum")] PICARDOCHRISTOPHERJOHN_24_1635_NumberSumModel model)
+    public IActionResult StarTriangle([Bind(Prefix = "StarTriangle")] PICARDOCHRISTOPHERJOHN_24_1635_StarTriangleModel model)
     {
         if (ModelState.IsValid)
             model.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Sum = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { StarTriangle = model });
     }
 }

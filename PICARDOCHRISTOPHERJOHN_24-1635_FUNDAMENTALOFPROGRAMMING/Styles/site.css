@@ -27,7 +27,7 @@
 
 @layer components {
     .topic-link {
-        @apply flex min-h-11 items-center px-3 py-2 text-sm hover:bg-stone-200;
+        @apply flex min-h-11 min-w-0 items-center px-3 py-2 text-sm hover:bg-stone-200;
     }
 
     .topic-link[aria-current="page"] {

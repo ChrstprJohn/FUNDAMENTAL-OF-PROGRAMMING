@@ -12,9 +12,9 @@
     <nav aria-label="Examples on this page" class="mt-2 flex flex-wrap gap-x-5 gap-y-3">
     <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#table">Multiplication Table</a>
     <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#count">Count from 1 to N</a>
-    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#digits">Sum of Digits</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#star-line">Star Line</a>
     <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#countdown">Countdown to Zero</a>
-    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#sum">Sum from 1 to N</a>
+    <a class="inline-flex min-h-11 items-center text-course-green underline underline-offset-4" href="#star-triangle">Star Triangle</a>
     </nav>
 </details>
 <partial name="PICARDOCHRISTOPHERJOHN_24-1635_validation" />
@@ -74,31 +74,31 @@ Result = string.Join(", ", numbers);</code></pre>
     </details>
 </section>
 
-<section id="digits" aria-labelledby="digits-title" class="example">
-    <h2 id="digits-title" class="text-2xl font-semibold tracking-tight">Sum of Digits</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">While loop: take the last digit, add it, then remove it. For example, 123 gives 6.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Digits" asp-fragment="digits" method="post" class="example-form">
+<section id="star-line" aria-labelledby="star-line-title" class="example">
+    <h2 id="star-line-title" class="text-2xl font-semibold tracking-tight">Star Line</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">While loop: enter a count to print a straight line of stars.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="StarLine" asp-fragment="star-line" method="post" class="example-form">
             <div>
-                <label asp-for="Digits.Number" class="form-label">Whole number (0–999999999)</label>
-                <input asp-for="Digits.Number" type="number" step="1" min="0" max="999999999" required class="form-input" aria-describedby="Digits_Number-error" />
-                <span asp-validation-for="Digits.Number" id="Digits_Number-error" class="field-error"></span>
+                <label asp-for="StarLine.Count" class="form-label">Stars (1–50)</label>
+                <input asp-for="StarLine.Count" type="number" step="1" min="1" max="50" required class="form-input" aria-describedby="StarLine_Count-error" />
+                <span asp-validation-for="StarLine.Count" id="StarLine_Count-error" class="field-error"></span>
             </div>
         <button type="submit" class="action-button">Run example</button>
     </form>
-    @if (Model.Digits.Result != null)
+    @if (Model.StarLine.Result != null)
     {
-        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Digits.Result</output></pre>
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.StarLine.Result</output></pre>
     }
     <details class="mt-6">
         <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>int number = Number.GetValueOrDefault();
-int total = 0;
-while (number &gt; 0)
+        <pre class="code-example"><code>int current = 0;
+string stars = "";
+while (current &lt; Count.GetValueOrDefault())
 {
-    total += number % 10;
-    number /= 10;
+    stars += "*";
+    current++;
 }
-Result = $"Sum of digits: {total}";</code></pre>
+Result = stars;</code></pre>
     </details>
 </section>
 
@@ -131,31 +131,33 @@ Result = string.Join(", ", numbers);</code></pre>
     </details>
 </section>
 
-<section id="sum" aria-labelledby="sum-title" class="example">
-    <h2 id="sum-title" class="text-2xl font-semibold tracking-tight">Sum from 1 to N</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">Do...while loop: add each number from 1 through N.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Sum" asp-fragment="sum" method="post" class="example-form">
+<section id="star-triangle" aria-labelledby="star-triangle-title" class="example">
+    <h2 id="star-triangle-title" class="text-2xl font-semibold tracking-tight">Star Triangle</h2>
+    <p class="mt-3 leading-relaxed text-stone-700">Do...while loop: add one star per row to build a triangle.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="StarTriangle" asp-fragment="star-triangle" method="post" class="example-form">
             <div>
-                <label asp-for="Sum.Limit" class="form-label">Add up to (1–100)</label>
-                <input asp-for="Sum.Limit" type="number" step="1" min="1" max="100" required class="form-input" aria-describedby="Sum_Limit-error" />
-                <span asp-validation-for="Sum.Limit" id="Sum_Limit-error" class="field-error"></span>
+                <label asp-for="StarTriangle.Rows" class="form-label">Rows (1–20)</label>
+                <input asp-for="StarTriangle.Rows" type="number" step="1" min="1" max="20" required class="form-input" aria-describedby="StarTriangle_Rows-error" />
+                <span asp-validation-for="StarTriangle.Rows" id="StarTriangle_Rows-error" class="field-error"></span>
             </div>
         <button type="submit" class="action-button">Run example</button>
     </form>
-    @if (Model.Sum.Result != null)
+    @if (Model.StarTriangle.Result != null)
     {
-        <pre class="example-output" role="status" tabindex="-1"><output>@Model.Sum.Result</output></pre>
+        <pre class="example-output" role="status" tabindex="-1"><output>@Model.StarTriangle.Result</output></pre>
     }
     <details class="mt-6">
         <summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary>
-        <pre class="code-example"><code>int current = 1;
-int total = 0;
+        <pre class="code-example"><code>int row = 1;
+string stars = "";
+var lines = new List&lt;string&gt;();
 do
 {
-    total += current;
-    current++;
+    stars += "*";
+    lines.Add(stars);
+    row++;
 }
-while (current &lt;= Limit.GetValueOrDefault());
-Result = $"Sum: {total}";</code></pre>
+while (row &lt;= Rows.GetValueOrDefault());
+Result = string.Join("\n", lines);</code></pre>
     </details>
 </section>
