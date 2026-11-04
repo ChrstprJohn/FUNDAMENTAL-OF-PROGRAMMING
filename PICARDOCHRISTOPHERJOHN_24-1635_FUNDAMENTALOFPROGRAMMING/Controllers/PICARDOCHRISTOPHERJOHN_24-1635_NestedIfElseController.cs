@@ -11,53 +11,48 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElseController : Controller
         return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel());
     }
 
-    [HttpPost("/nested-if-else/number")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Number([Bind(Prefix = "Number")] PICARDOCHRISTOPHERJOHN_24_1635_NumberCheckModel model)
+    [HttpPost("/number-sign")]
+    public IActionResult Number(PICARDOCHRISTOPHERJOHN_24_1635_NumberCheckModel Number)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Number.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Number = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Number = Number });
     }
 
-    [HttpPost("/nested-if-else/grade")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Grade([Bind(Prefix = "Grade")] PICARDOCHRISTOPHERJOHN_24_1635_GradeModel model)
+    [HttpPost("/grade")]
+    public IActionResult Grade(PICARDOCHRISTOPHERJOHN_24_1635_GradeModel Grade)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Grade.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Grade = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Grade = Grade });
     }
 
-    [HttpPost("/nested-if-else/age")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Age([Bind(Prefix = "Age")] PICARDOCHRISTOPHERJOHN_24_1635_AgeGroupModel model)
+    [HttpPost("/age")]
+    public IActionResult Age(PICARDOCHRISTOPHERJOHN_24_1635_AgeGroupModel Age)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Age.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Age = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Age = Age });
     }
 
-    [HttpPost("/nested-if-else/largest")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Largest([Bind(Prefix = "Largest")] PICARDOCHRISTOPHERJOHN_24_1635_LargestNumberModel model)
+    [HttpPost("/largest-of-three")]
+    public IActionResult Largest(PICARDOCHRISTOPHERJOHN_24_1635_LargestNumberModel Largest)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Largest.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Largest = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Largest = Largest });
     }
 
-    [HttpPost("/nested-if-else/parity")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Parity([Bind(Prefix = "Parity")] PICARDOCHRISTOPHERJOHN_24_1635_ParityModel model)
+    [HttpPost("/sign-and-parity")]
+    public IActionResult Parity(PICARDOCHRISTOPHERJOHN_24_1635_ParityModel Parity)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Parity.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Parity = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_nestedifelse", new PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElsePageModel { Parity = Parity });
     }
 }

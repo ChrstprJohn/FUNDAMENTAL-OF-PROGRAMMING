@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.BasicIO;
 
@@ -16,12 +15,10 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_CalculatorModel
         ErrorMessage = "Choose a valid operation.")]
     public string Operation { get; set; } = "add";
 
-    [BindNever]
-    public decimal? Result { get; set; }
+    public decimal? Result { get; private set; }
 
     public void Calculate()
     {
-        // The controller validates the inputs before calling this method.
         decimal first = FirstNumber.GetValueOrDefault();
         decimal second = SecondNumber.GetValueOrDefault();
 

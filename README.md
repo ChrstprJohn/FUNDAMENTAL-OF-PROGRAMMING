@@ -83,3 +83,7 @@ Each form submits independently and returns the same topic page. There is no dat
 ## Windows generated-file path fix
 
 The default generated EditorConfig path is 262 characters in this workspace, which can fail in Windows tooling. The project sets `GeneratedMSBuildEditorConfigFile` to `obj/$(Configuration)/$(TargetFramework)/Generated.editorconfig`, preserving the required project name. If Visual Studio still shows the old path after reloading the project, rebuild the solution so it refreshes its generated-file references.
+
+## Learning documentation
+
+Open [the documentation index](documentation/README.md) for the app-startup guide and 20 step-by-step MVC walkthroughs, grouped by topic. Each guide includes source line links, sample input/output, and simple Express comparisons.

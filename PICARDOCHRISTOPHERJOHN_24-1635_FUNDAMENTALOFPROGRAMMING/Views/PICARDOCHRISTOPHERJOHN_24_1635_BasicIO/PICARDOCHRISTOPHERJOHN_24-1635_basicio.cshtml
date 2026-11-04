@@ -22,7 +22,7 @@
 <section id="calculator" aria-labelledby="calculator-title" class="example">
     <h2 id="calculator-title" class="text-2xl font-semibold tracking-tight">Basic Calculator</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Add, subtract, multiply, or divide two numbers.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="BasicIO" asp-fragment="calculator" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Calculator" asp-fragment="calculator" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Calculator.FirstNumber" class="form-label">First number</label>
                 <input asp-for="Calculator.FirstNumber" type="number" step="any" required class="form-input" aria-describedby="Calculator_FirstNumber-error" />
@@ -64,7 +64,7 @@
 <section id="bmi" aria-labelledby="bmi-title" class="example">
     <h2 id="bmi-title" class="text-2xl font-semibold tracking-tight">BMI Calculator</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Enter weight in kilograms and height in centimetres. This example calculates the number only.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Bmi" asp-fragment="bmi" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Bmi" asp-fragment="bmi" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Bmi.Weight" class="form-label">Weight (kg)</label>
                 <input asp-for="Bmi.Weight" type="number" step="any" min="1" max="500" required class="form-input" aria-describedby="Bmi_Weight-error" />
@@ -92,7 +92,7 @@ Result = $"BMI: {bmi:F2} kg/m²";</code></pre>
 <section id="temperature" aria-labelledby="temperature-title" class="example">
     <h2 id="temperature-title" class="text-2xl font-semibold tracking-tight">Temperature Converter</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Convert between Celsius and Fahrenheit.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Temperature" asp-fragment="temperature" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Temperature" asp-fragment="temperature" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Temperature.Value" class="form-label">Temperature</label>
                 <input asp-for="Temperature.Value" type="number" step="any" min="-1000000" max="1000000" required class="form-input" aria-describedby="Temperature_Value-error" />
@@ -125,7 +125,7 @@ else
 <section id="greeting" aria-labelledby="greeting-title" class="example">
     <h2 id="greeting-title" class="text-2xl font-semibold tracking-tight">Personalized Greeting</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Enter your name and display a greeting.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Greeting" asp-fragment="greeting" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Greeting" asp-fragment="greeting" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Greeting.Name" class="form-label">Your name</label>
                 <input asp-for="Greeting.Name" type="text" maxlength="60" required class="form-input" aria-describedby="Greeting_Name-error" />
@@ -146,7 +146,7 @@ else
 <section id="circle" aria-labelledby="circle-title" class="example">
     <h2 id="circle-title" class="text-2xl font-semibold tracking-tight">Circle Area &amp; Circumference</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Enter a radius in any unit. Area uses square units; circumference uses the same unit as the radius.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Circle" asp-fragment="circle" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_BasicIO" asp-action="Circle" asp-fragment="circle" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Circle.Radius" class="form-label">Radius</label>
                 <input asp-for="Circle.Radius" type="number" step="any" min="0.01" max="1000000" required class="form-input" aria-describedby="Circle_Radius-error" />

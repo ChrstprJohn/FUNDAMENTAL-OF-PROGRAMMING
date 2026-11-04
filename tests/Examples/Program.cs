@@ -96,14 +96,14 @@ Check(IsValid(sum), "Do-while triangle accepts valid input");
 sum.Calculate();
 Check(sum.Result == "*\n**\n***", "Do-while triangle result");
 
-var arraySum = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2, 3, 4, 5] };
+var arraySum = new PICARDOCHRISTOPHERJOHN_24_1635_ArraySumModel { Numbers = [1, 2, 3, 4, 5] };
 Check(IsValid(arraySum), "Array sum accepts valid input");
-arraySum.CalculateSum();
+arraySum.Calculate();
 Check(arraySum.Result == "Sum: 15", "Array sum result");
 
-var arrayLargest = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [-5, -2, -9, -1, -3] };
+var arrayLargest = new PICARDOCHRISTOPHERJOHN_24_1635_ArrayLargestModel { Numbers = [-5, -2, -9, -1, -3] };
 Check(IsValid(arrayLargest), "Array maximum accepts valid input");
-arrayLargest.FindLargest();
+arrayLargest.Calculate();
 Check(arrayLargest.Result == "Largest value: -1", "Array maximum result");
 
 foreach (var (operation, expected) in new[] { ("subtract", 5m), ("multiply", 50m), ("divide", 2m) })
@@ -184,28 +184,28 @@ Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CountModel { Limit = 1000000 }
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CountdownModel { Start = 0 }), "Bound countdown");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_StarTriangleModel { Rows = 0 }), "Bound do-while sum");
 Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_CalculatorModel()), "Reject missing calculator inputs");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2] }), "Reject incomplete array");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2, null, 4, 5] }), "Reject missing element");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel { Numbers = [1, 2, 3, 4, 1001] }), "Reject out-of-range element");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArraySumModel { Numbers = [1, 2] }), "Reject incomplete array");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArraySumModel { Numbers = [1, 2, null, 4, 5] }), "Reject missing element");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArraySumModel { Numbers = [1, 2, 3, 4, 1001] }), "Reject out-of-range element");
 Check(arraySum.ArrayContents == "int[] numbers = { 1, 2, 3, 4, 5 };", "Show populated array");
 
 
-var totals = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel();
+var totals = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixTotalsModel();
 Check(IsValid(totals), "Totals sample valid");
-totals.CalculateTotals();
-Check(totals.Result == "Row index 0: 30, Row index 1: 70\nColumn index 0: 40, Column index 1: 60", "Row and column totals");
-totals.Cells = [-2, 0, 3, -1]; totals.CalculateTotals();
-Check(totals.Result == "Row index 0: -2, Row index 1: 2\nColumn index 0: 1, Column index 1: -1", "Edited totals");
-var extremes = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel();
-extremes.FindExtremes();
+totals.Calculate();
+Check(totals.Result == "Row index 0: 60, Row index 1: 150, Row index 2: 240\nColumn index 0: 120, Column index 1: 150, Column index 2: 180", "Row and column totals");
+totals.Cells = [-2, 0, 3, -1, 4, 2, 5, -3, 1]; totals.Calculate();
+Check(totals.Result == "Row index 0: 1, Row index 1: 5, Row index 2: 3\nColumn index 0: 2, Column index 1: 1, Column index 2: 6", "Edited totals");
+var extremes = new PICARDOCHRISTOPHERJOHN_24_1635_MatrixExtremesModel();
+extremes.Calculate();
 Check(extremes.Result == "Highest: 40 at numbers[1,1]\nLowest: 10 at numbers[0,0]", "Highest and lowest coordinates");
-extremes.Cells = [7, -1, 7, -1]; extremes.FindExtremes();
+extremes.Cells = [7, -1, 7, -1]; extremes.Calculate();
 Check(extremes.Result == "Highest: 7 at numbers[0,0]; numbers[1,0]\nLowest: -1 at numbers[0,1]; numbers[1,1]", "All tied coordinates");
-extremes.Cells = [0, 0, 0, 0]; extremes.FindExtremes();
+extremes.Cells = [0, 0, 0, 0]; extremes.Calculate();
 Check(extremes.Result!.Contains("numbers[1,1]"), "All equal values");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Cells = [1] }), "Incomplete matrix");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Cells = [1, 2, null, 4] }), "Missing matrix cell");
-Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel { Cells = [1, 2, 3, 1001] }), "Matrix bounds");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixTotalsModel { Cells = [1] }), "Incomplete matrix");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixTotalsModel { Cells = [1, 2, null, 4, 5, 6, 7, 8, 9] }), "Missing matrix cell");
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixTotalsModel { Cells = [1, 2, 3, 4, 5, 6, 7, 8, 1001] }), "Matrix bounds");
 var grid = new PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationGridModel();
 Check(IsValid(grid), "Grid defaults valid");
 grid.Calculate();
@@ -216,5 +216,19 @@ grid.Rows = 0;
 Check(!IsValid(grid), "Reject zero grid dimension");
 grid.Rows = 11;
 Check(!IsValid(grid), "Bound grid size");
+
+
+
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayLargestModel { Numbers = [1, 2] }), "ArrayLargestModel rejects invalid input");
+
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayLargestModel { Numbers = [1, 2, null, 4, 5] }), "ArrayLargestModel rejects invalid input");
+
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_ArrayLargestModel { Numbers = [1, 2, 3, 4, 1001] }), "ArrayLargestModel rejects invalid input");
+
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixExtremesModel { Cells = [1] }), "MatrixExtremesModel rejects invalid input");
+
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixExtremesModel { Cells = [1, 2, null, 4] }), "MatrixExtremesModel rejects invalid input");
+
+Check(!IsValid(new PICARDOCHRISTOPHERJOHN_24_1635_MatrixExtremesModel { Cells = [1, 2, 3, 1001] }), "MatrixExtremesModel rejects invalid input");
 
 Console.WriteLine($"Passed {checks} checks across all 20 examples.");

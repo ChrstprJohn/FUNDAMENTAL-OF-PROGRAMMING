@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.Arrays;
 
@@ -11,9 +10,7 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationGridModel
     [Required]
     [Range(1, 10)]
     public int? Columns { get; set; } = 10;
-    [BindNever]
     public string? ArrayContents { get; private set; }
-    [BindNever]
     public string? Result { get; private set; }
 
     public void Calculate()

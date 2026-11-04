@@ -11,53 +11,48 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_LoopsController : Controller
         return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel());
     }
 
-    [HttpPost("/loops/table")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Table([Bind(Prefix = "Table")] PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationModel model)
+    [HttpPost("/multiplication-table")]
+    public IActionResult Table(PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationModel Table)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Table.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Table = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Table = Table });
     }
 
-    [HttpPost("/loops/count")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Count([Bind(Prefix = "Count")] PICARDOCHRISTOPHERJOHN_24_1635_CountModel model)
+    [HttpPost("/count-to-n")]
+    public IActionResult Count(PICARDOCHRISTOPHERJOHN_24_1635_CountModel Count)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Count.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Count = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Count = Count });
     }
 
-    [HttpPost("/loops/star-line")]
-    [ValidateAntiForgeryToken]
-    public IActionResult StarLine([Bind(Prefix = "StarLine")] PICARDOCHRISTOPHERJOHN_24_1635_StarLineModel model)
+    [HttpPost("/star-line")]
+    public IActionResult StarLine(PICARDOCHRISTOPHERJOHN_24_1635_StarLineModel StarLine)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            StarLine.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { StarLine = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { StarLine = StarLine });
     }
 
-    [HttpPost("/loops/countdown")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Countdown([Bind(Prefix = "Countdown")] PICARDOCHRISTOPHERJOHN_24_1635_CountdownModel model)
+    [HttpPost("/countdown")]
+    public IActionResult Countdown(PICARDOCHRISTOPHERJOHN_24_1635_CountdownModel Countdown)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            Countdown.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Countdown = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { Countdown = Countdown });
     }
 
-    [HttpPost("/loops/star-triangle")]
-    [ValidateAntiForgeryToken]
-    public IActionResult StarTriangle([Bind(Prefix = "StarTriangle")] PICARDOCHRISTOPHERJOHN_24_1635_StarTriangleModel model)
+    [HttpPost("/star-triangle")]
+    public IActionResult StarTriangle(PICARDOCHRISTOPHERJOHN_24_1635_StarTriangleModel StarTriangle)
     {
         if (ModelState.IsValid)
-            model.Calculate();
+            StarTriangle.Calculate();
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { StarTriangle = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_loops", new PICARDOCHRISTOPHERJOHN_24_1635_LoopsPageModel { StarTriangle = StarTriangle });
     }
 }

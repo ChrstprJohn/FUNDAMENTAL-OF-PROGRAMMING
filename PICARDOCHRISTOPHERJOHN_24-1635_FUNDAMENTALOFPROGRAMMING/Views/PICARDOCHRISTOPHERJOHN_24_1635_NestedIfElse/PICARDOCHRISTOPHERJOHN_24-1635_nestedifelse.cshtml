@@ -22,7 +22,7 @@
 <section id="number" aria-labelledby="number-title" class="example">
     <h2 id="number-title" class="text-2xl font-semibold tracking-tight">Positive, Negative, or Zero</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Use a nested condition to distinguish a positive value from zero.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Number" asp-fragment="number" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Number" asp-fragment="number" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Number.Value" class="form-label">Number</label>
                 <input asp-for="Number.Value" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Number_Value-error" />
@@ -54,7 +54,7 @@ else
 <section id="grade" aria-labelledby="grade-title" class="example">
     <h2 id="grade-title" class="text-2xl font-semibold tracking-tight">Grade Checker</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Practice rules: 90–100 distinction, 75–89 passed, 60–74 needs improvement, below 60 failed.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Grade" asp-fragment="grade" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Grade" asp-fragment="grade" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Grade.Score" class="form-label">Grade (0–100)</label>
                 <input asp-for="Grade.Score" type="number" step="1" min="0" max="100" required class="form-input" aria-describedby="Grade_Score-error" />
@@ -89,7 +89,7 @@ else
 <section id="age" aria-labelledby="age-title" class="example">
     <h2 id="age-title" class="text-2xl font-semibold tracking-tight">Age Group</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Group an age into child, teenager, adult, or senior using practice ranges.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Age" asp-fragment="age" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Age" asp-fragment="age" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Age.Years" class="form-label">Age</label>
                 <input asp-for="Age.Years" type="number" step="1" min="0" max="120" required class="form-input" aria-describedby="Age_Years-error" />
@@ -124,7 +124,7 @@ else
 <section id="largest" aria-labelledby="largest-title" class="example">
     <h2 id="largest-title" class="text-2xl font-semibold tracking-tight">Largest of Three Numbers</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Compare three values using nested if...else statements. Equal values are allowed.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Largest" asp-fragment="largest" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Largest" asp-fragment="largest" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Largest.First" class="form-label">First number</label>
                 <input asp-for="Largest.First" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Largest_First-error" />
@@ -173,7 +173,7 @@ Result = $"Largest number: {largest}";</code></pre>
 <section id="parity" aria-labelledby="parity-title" class="example">
     <h2 id="parity-title" class="text-2xl font-semibold tracking-tight">Number Check</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Check whether a whole number is positive or negative, then even or odd. Zero is even.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Parity" asp-fragment="parity" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_NestedIfElse" asp-action="Parity" asp-fragment="parity" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Parity.Value" class="form-label">Order total (₱)</label>
                 <input asp-for="Parity.Value" type="number" step="1" min="-1000000" max="1000000" required class="form-input" aria-describedby="Parity_Value-error" />

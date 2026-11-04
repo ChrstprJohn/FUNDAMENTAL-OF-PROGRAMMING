@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.BasicIO;
 
@@ -14,7 +13,6 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_TemperatureModel
     [RegularExpression("^(c-to-f|f-to-c)$", ErrorMessage = "Choose a valid conversion.")]
     public string Direction { get; set; } = "c-to-f";
 
-    [BindNever]
     public string? Result { get; private set; }
 
     public void Calculate()

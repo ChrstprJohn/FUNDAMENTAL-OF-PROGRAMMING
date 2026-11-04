@@ -1,16 +1,13 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.Arrays;
 
-public class PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel : IValidatableObject
+public class PICARDOCHRISTOPHERJOHN_24_1635_ArraySumModel : IValidatableObject
 {
     public int?[] Numbers { get; set; } = [1, 2, 3, 4, 5];
 
-    [BindNever]
     public string? ArrayContents { get; private set; }
 
-    [BindNever]
     public string? Result { get; private set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext context)
@@ -37,24 +34,12 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel : IValidatableObject
         return numbers;
     }
 
-    public void CalculateSum()
+    public void Calculate()
     {
         int[] numbers = PopulateArray();
         int total = 0;
         foreach (int number in numbers)
             total += number;
         Result = $"Sum: {total}";
-    }
-
-    public void FindLargest()
-    {
-        int[] numbers = PopulateArray();
-        int largest = numbers[0];
-        foreach (int number in numbers)
-        {
-            if (number > largest)
-                largest = number;
-        }
-        Result = $"Largest value: {largest}";
     }
 }

@@ -1,14 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.Arrays;
 
-public class PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel : IValidatableObject
+public class PICARDOCHRISTOPHERJOHN_24_1635_MatrixExtremesModel : IValidatableObject
 {
     public int?[] Cells { get; set; } = [10, 20, 30, 40];
-    [BindNever]
     public string? ArrayContents { get; private set; }
-    [BindNever]
     public string? Result { get; private set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext context)
@@ -38,23 +35,7 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel : IValidatableObject
         return numbers;
     }
 
-    public void CalculateTotals()
-    {
-        int[,] numbers = PopulateArray();
-        int[] rowTotals = new int[2];
-        int[] columnTotals = new int[2];
-        for (int row = 0; row < 2; row++)
-        {
-            for (int column = 0; column < 2; column++)
-            {
-                rowTotals[row] += numbers[row, column];
-                columnTotals[column] += numbers[row, column];
-            }
-        }
-        Result = $"Row index 0: {rowTotals[0]}, Row index 1: {rowTotals[1]}\nColumn index 0: {columnTotals[0]}, Column index 1: {columnTotals[1]}";
-    }
-
-    public void FindExtremes()
+    public void Calculate()
     {
         int[,] numbers = PopulateArray();
         int highest = numbers[0, 0];

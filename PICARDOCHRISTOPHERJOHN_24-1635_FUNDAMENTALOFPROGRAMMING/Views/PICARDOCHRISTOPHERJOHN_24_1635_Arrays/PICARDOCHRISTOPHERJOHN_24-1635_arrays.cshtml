@@ -22,7 +22,7 @@
 <section id="sum" aria-labelledby="sum-title" class="example">
     <h2 id="sum-title" class="text-2xl font-semibold tracking-tight">Sum of Five Numbers</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Fill numbers[0] through numbers[4]. The program copies these inputs into an int[] array, then adds its elements.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Sum" asp-fragment="sum" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Sum" asp-fragment="sum" method="post" asp-antiforgery="false" class="example-form">
 <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
 <div><label asp-for="Sum.Numbers[0]" class="form-label">numbers[0]</label><input asp-for="Sum.Numbers[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[0]" class="field-error"></span></div>
 <div><label asp-for="Sum.Numbers[1]" class="form-label">numbers[1]</label><input asp-for="Sum.Numbers[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Sum.Numbers[1]" class="field-error"></span></div>
@@ -53,7 +53,7 @@ Result = $"Sum: {total}";</code></pre>
 <section id="largest" aria-labelledby="largest-title" class="example">
     <h2 id="largest-title" class="text-2xl font-semibold tracking-tight">Largest Value in an Array</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Fill five indexed elements. The program populates an int[] array, then compares its elements to find the largest.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Largest" asp-fragment="largest" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Largest" asp-fragment="largest" method="post" asp-antiforgery="false" class="example-form">
 <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
 <div><label asp-for="Largest.Numbers[0]" class="form-label">numbers[0]</label><input asp-for="Largest.Numbers[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[0]" class="field-error"></span></div>
 <div><label asp-for="Largest.Numbers[1]" class="form-label">numbers[1]</label><input asp-for="Largest.Numbers[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Largest.Numbers[1]" class="field-error"></span></div>
@@ -88,13 +88,18 @@ Result = $"Largest value: {largest}";</code></pre>
 
 <section id="totals" aria-labelledby="totals-title" class="example">
     <h2 id="totals-title" class="text-2xl font-semibold tracking-tight">Row &amp; Column Totals</h2>
-    <p class="mt-3 leading-relaxed text-stone-700">Edit the four sample values to populate an int[2, 2] array. Results use zero-based array indexes, matching the input labels.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Totals" asp-fragment="totals" method="post" class="example-form">
-        <div class="grid grid-cols-2 gap-3">
+    <p class="mt-3 leading-relaxed text-stone-700">Edit the nine sample values to populate an int[3, 3] array. Results use zero-based array indexes, matching the input labels.</p>
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Totals" asp-fragment="totals" method="post" asp-antiforgery="false" class="example-form">
+        <div class="grid grid-cols-3 gap-3">
             <div><label asp-for="Totals.Cells[0]" class="form-label">numbers[0,0]</label><input asp-for="Totals.Cells[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[0]" class="field-error"></span></div>
             <div><label asp-for="Totals.Cells[1]" class="form-label">numbers[0,1]</label><input asp-for="Totals.Cells[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[1]" class="field-error"></span></div>
-            <div><label asp-for="Totals.Cells[2]" class="form-label">numbers[1,0]</label><input asp-for="Totals.Cells[2]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[2]" class="field-error"></span></div>
-            <div><label asp-for="Totals.Cells[3]" class="form-label">numbers[1,1]</label><input asp-for="Totals.Cells[3]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[3]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[2]" class="form-label">numbers[0,2]</label><input asp-for="Totals.Cells[2]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[2]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[3]" class="form-label">numbers[1,0]</label><input asp-for="Totals.Cells[3]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[3]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[4]" class="form-label">numbers[1,1]</label><input asp-for="Totals.Cells[4]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[4]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[5]" class="form-label">numbers[1,2]</label><input asp-for="Totals.Cells[5]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[5]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[6]" class="form-label">numbers[2,0]</label><input asp-for="Totals.Cells[6]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[6]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[7]" class="form-label">numbers[2,1]</label><input asp-for="Totals.Cells[7]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[7]" class="field-error"></span></div>
+            <div><label asp-for="Totals.Cells[8]" class="form-label">numbers[2,2]</label><input asp-for="Totals.Cells[8]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Totals.Cells[8]" class="field-error"></span></div>
         </div>
         <button type="submit" class="action-button">Populate and calculate totals</button>
     </form>
@@ -103,29 +108,29 @@ Result = $"Largest value: {largest}";</code></pre>
         <pre class="mt-5 whitespace-pre-wrap break-words bg-white p-4"><code>@Model.Totals.ArrayContents</code></pre>
         <pre class="example-output" role="status" tabindex="-1"><output>@Model.Totals.Result</output></pre>
     }
-    <details class="mt-6"><summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary><pre class="code-example"><code>int[,] numbers = new int[2, 2];
-for (int row = 0; row &lt; 2; row++)
+    <details class="mt-6"><summary class="min-h-11 cursor-pointer py-2 font-semibold">See the C# logic</summary><pre class="code-example"><code>int[,] numbers = new int[3, 3];
+for (int row = 0; row &lt; 3; row++)
 {
-    for (int column = 0; column &lt; 2; column++)
-        numbers[row, column] = Cells[row * 2 + column].GetValueOrDefault();
+    for (int column = 0; column &lt; 3; column++)
+        numbers[row, column] = Cells[row * 3 + column].GetValueOrDefault();
 }
-int[] rowTotals = new int[2];
-int[] columnTotals = new int[2];
-for (int row = 0; row &lt; 2; row++)
+int[] rowTotals = new int[3];
+int[] columnTotals = new int[3];
+for (int row = 0; row &lt; 3; row++)
 {
-    for (int column = 0; column &lt; 2; column++)
+    for (int column = 0; column &lt; 3; column++)
     {
         rowTotals[row] += numbers[row, column];
         columnTotals[column] += numbers[row, column];
     }
 }
-Result = $"Row index 0: {rowTotals[0]}, Row index 1: {rowTotals[1]}\nColumn index 0: {columnTotals[0]}, Column index 1: {columnTotals[1]}";</code></pre></details>
+Result = $"Row index 0: {rowTotals[0]}, Row index 1: {rowTotals[1]}, Row index 2: {rowTotals[2]}\nColumn index 0: {columnTotals[0]}, Column index 1: {columnTotals[1]}, Column index 2: {columnTotals[2]}";</code></pre></details>
 </section>
 
 <section id="extremes" aria-labelledby="extremes-title" class="example">
     <h2 id="extremes-title" class="text-2xl font-semibold tracking-tight">Highest &amp; Lowest + Coordinates</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Edit the four sample values to populate an int[2, 2] array. Results use zero-based array indexes, matching the input labels.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Extremes" asp-fragment="extremes" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Extremes" asp-fragment="extremes" method="post" asp-antiforgery="false" class="example-form">
         <div class="grid grid-cols-2 gap-3">
             <div><label asp-for="Extremes.Cells[0]" class="form-label">numbers[0,0]</label><input asp-for="Extremes.Cells[0]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Extremes.Cells[0]" class="field-error"></span></div>
             <div><label asp-for="Extremes.Cells[1]" class="form-label">numbers[0,1]</label><input asp-for="Extremes.Cells[1]" type="number" step="1" min="-1000" max="1000" required class="form-input" /><span asp-validation-for="Extremes.Cells[1]" class="field-error"></span></div>
@@ -172,7 +177,7 @@ Result = $"Highest: {highest} at {string.Join("; ", highPositions)}\nLowest: {lo
 <section id="grid" aria-labelledby="grid-title" class="example">
     <h2 id="grid-title" class="text-2xl font-semibold tracking-tight">Multiplication Table Grid (1 to 10)</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Populate an int[,] array with (row + 1) × (column + 1). Both limits start at 10 and can be changed from 1 to 10.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Grid" asp-fragment="grid" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Arrays" asp-action="Grid" asp-fragment="grid" method="post" asp-antiforgery="false" class="example-form">
         <div class="grid grid-cols-2 gap-3">
             <div><label asp-for="Grid.Rows" class="form-label">Rows (1–10)</label><input asp-for="Grid.Rows" type="number" step="1" min="1" max="10" required class="form-input" /><span asp-validation-for="Grid.Rows" class="field-error"></span></div>
             <div><label asp-for="Grid.Columns" class="form-label">Columns (1–10)</label><input asp-for="Grid.Columns" type="number" step="1" min="1" max="10" required class="form-input" /><span asp-validation-for="Grid.Columns" class="field-error"></span></div>

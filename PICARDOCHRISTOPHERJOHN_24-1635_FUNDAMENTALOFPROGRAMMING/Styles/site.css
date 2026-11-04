@@ -84,7 +84,6 @@ details:not([open]) > .code-example {
     display: none;
 }
 
-/* Desktop navigation stays visible; mobile uses a native disclosure without JavaScript. */
 @media (min-width: 64rem) {
     .topic-menu > summary,
     .example-menu > summary {

@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.BasicIO;
 
@@ -13,7 +12,6 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_BmiModel
     [Range(50.0, 300.0)]
     public double? Height { get; set; }
 
-    [BindNever]
     public string? Result { get; private set; }
 
     public void Calculate()

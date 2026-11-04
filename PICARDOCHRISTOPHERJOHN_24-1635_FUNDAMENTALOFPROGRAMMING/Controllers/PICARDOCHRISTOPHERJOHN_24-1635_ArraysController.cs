@@ -11,77 +11,72 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_ArraysController : Controller
         return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel());
     }
 
-    [HttpPost("/arrays/sum")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Sum([Bind(Prefix = "Sum")] PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel model)
+    [HttpPost("/array-sum")]
+    public IActionResult Sum(PICARDOCHRISTOPHERJOHN_24_1635_ArraySumModel Sum)
     {
         if (ModelState.IsValid)
-            model.CalculateSum();
+            Sum.Calculate();
 
-        var inputs = model.Numbers ?? [];
+        var inputs = Sum.Numbers ?? [];
         if (inputs.Length < 5)
         {
             Array.Resize(ref inputs, 5);
-            model.Numbers = inputs;
+            Sum.Numbers = inputs;
         }
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Sum = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Sum = Sum });
     }
 
-    [HttpPost("/arrays/largest")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Largest([Bind(Prefix = "Largest")] PICARDOCHRISTOPHERJOHN_24_1635_ArrayModel model)
+    [HttpPost("/array-largest")]
+    public IActionResult Largest(PICARDOCHRISTOPHERJOHN_24_1635_ArrayLargestModel Largest)
     {
         if (ModelState.IsValid)
-            model.FindLargest();
+            Largest.Calculate();
 
-        var inputs = model.Numbers ?? [];
+        var inputs = Largest.Numbers ?? [];
         if (inputs.Length < 5)
         {
             Array.Resize(ref inputs, 5);
-            model.Numbers = inputs;
+            Largest.Numbers = inputs;
         }
 
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Largest = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Largest = Largest });
     }
 
-    [HttpPost("/arrays/totals")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Totals([Bind(Prefix = "Totals")] PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel model)
+    [HttpPost("/row-column-totals")]
+    public IActionResult Totals(PICARDOCHRISTOPHERJOHN_24_1635_MatrixTotalsModel Totals)
     {
         if (ModelState.IsValid)
-            model.CalculateTotals();
-        var cells = model.Cells ?? [];
+            Totals.Calculate();
+        var cells = Totals.Cells ?? [];
+        if (cells.Length < 9)
+        {
+            Array.Resize(ref cells, 9);
+            Totals.Cells = cells;
+        }
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Totals = Totals });
+    }
+
+    [HttpPost("/highest-lowest")]
+    public IActionResult Extremes(PICARDOCHRISTOPHERJOHN_24_1635_MatrixExtremesModel Extremes)
+    {
+        if (ModelState.IsValid)
+            Extremes.Calculate();
+        var cells = Extremes.Cells ?? [];
         if (cells.Length < 4)
         {
             Array.Resize(ref cells, 4);
-            model.Cells = cells;
+            Extremes.Cells = cells;
         }
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Totals = model });
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Extremes = Extremes });
     }
 
-    [HttpPost("/arrays/extremes")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Extremes([Bind(Prefix = "Extremes")] PICARDOCHRISTOPHERJOHN_24_1635_MatrixModel model)
+    [HttpPost("/multiplication-grid")]
+    public IActionResult Grid(PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationGridModel Grid)
     {
         if (ModelState.IsValid)
-            model.FindExtremes();
-        var cells = model.Cells ?? [];
-        if (cells.Length < 4)
-        {
-            Array.Resize(ref cells, 4);
-            model.Cells = cells;
-        }
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Extremes = model });
-    }
-
-    [HttpPost("/arrays/grid")]
-    [ValidateAntiForgeryToken]
-    public IActionResult Grid([Bind(Prefix = "Grid")] PICARDOCHRISTOPHERJOHN_24_1635_MultiplicationGridModel model)
-    {
-        if (ModelState.IsValid)
-            model.Calculate();
-        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Grid = model });
+            Grid.Calculate();
+        return View("PICARDOCHRISTOPHERJOHN_24-1635_arrays", new PICARDOCHRISTOPHERJOHN_24_1635_ArraysPageModel { Grid = Grid });
     }
 
 }

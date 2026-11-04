@@ -22,7 +22,7 @@
 <section id="table" aria-labelledby="table-title" class="example">
     <h2 id="table-title" class="text-2xl font-semibold tracking-tight">Multiplication Table</h2>
     <p class="mt-3 leading-relaxed text-stone-700">For loop: multiply a number by 1 through 10.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Table" asp-fragment="table" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Table" asp-fragment="table" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Table.Number" class="form-label">Number (1–100)</label>
                 <input asp-for="Table.Number" type="number" step="1" min="1" max="100" required class="form-input" aria-describedby="Table_Number-error" />
@@ -49,7 +49,7 @@ Result = string.Join("\n", lines);</code></pre>
 <section id="count" aria-labelledby="count-title" class="example">
     <h2 id="count-title" class="text-2xl font-semibold tracking-tight">Count from 1 to N</h2>
     <p class="mt-3 leading-relaxed text-stone-700">While loop: start at 1 and keep counting until N.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Count" asp-fragment="count" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Count" asp-fragment="count" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Count.Limit" class="form-label">Count up to (1–20)</label>
                 <input asp-for="Count.Limit" type="number" step="1" min="1" max="20" required class="form-input" aria-describedby="Count_Limit-error" />
@@ -77,7 +77,7 @@ Result = string.Join(", ", numbers);</code></pre>
 <section id="star-line" aria-labelledby="star-line-title" class="example">
     <h2 id="star-line-title" class="text-2xl font-semibold tracking-tight">Star Line</h2>
     <p class="mt-3 leading-relaxed text-stone-700">While loop: enter a count to print a straight line of stars.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="StarLine" asp-fragment="star-line" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="StarLine" asp-fragment="star-line" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="StarLine.Count" class="form-label">Stars (1–50)</label>
                 <input asp-for="StarLine.Count" type="number" step="1" min="1" max="50" required class="form-input" aria-describedby="StarLine_Count-error" />
@@ -105,7 +105,7 @@ Result = stars;</code></pre>
 <section id="countdown" aria-labelledby="countdown-title" class="example">
     <h2 id="countdown-title" class="text-2xl font-semibold tracking-tight">Countdown to Zero</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Do...while loop: display the starting number, then count down to zero.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Countdown" asp-fragment="countdown" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="Countdown" asp-fragment="countdown" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="Countdown.Start" class="form-label">Start at (1–20)</label>
                 <input asp-for="Countdown.Start" type="number" step="1" min="1" max="20" required class="form-input" aria-describedby="Countdown_Start-error" />
@@ -134,7 +134,7 @@ Result = string.Join(", ", numbers);</code></pre>
 <section id="star-triangle" aria-labelledby="star-triangle-title" class="example">
     <h2 id="star-triangle-title" class="text-2xl font-semibold tracking-tight">Star Triangle</h2>
     <p class="mt-3 leading-relaxed text-stone-700">Do...while loop: add one star per row to build a triangle.</p>
-    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="StarTriangle" asp-fragment="star-triangle" method="post" class="example-form">
+    <form asp-controller="PICARDOCHRISTOPHERJOHN_24_1635_Loops" asp-action="StarTriangle" asp-fragment="star-triangle" method="post" asp-antiforgery="false" class="example-form">
             <div>
                 <label asp-for="StarTriangle.Rows" class="form-label">Rows (1–20)</label>
                 <input asp-for="StarTriangle.Rows" type="number" step="1" min="1" max="20" required class="form-input" aria-describedby="StarTriangle_Rows-error" />

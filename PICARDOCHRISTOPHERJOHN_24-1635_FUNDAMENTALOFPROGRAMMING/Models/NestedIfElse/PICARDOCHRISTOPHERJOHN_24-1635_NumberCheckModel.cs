@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PICARDOCHRISTOPHERJOHN_24_1635_FUNDAMENTALOFPROGRAMMING.Models.NestedIfElse;
 
@@ -10,7 +9,6 @@ public class PICARDOCHRISTOPHERJOHN_24_1635_NumberCheckModel
     [Range(-1000000, 1000000)]
     public int? Value { get; set; }
 
-    [BindNever]
     public string? Result { get; private set; }
 
     public void Calculate()
